@@ -1,0 +1,6 @@
+set(sensors_SETUP_PY_VERSION "0.0.0")
+set(sensors_SETUP_PY_SCRIPTS "")
+set(sensors_SETUP_PY_PACKAGES "sensors")
+set(sensors_SETUP_PY_PACKAGE_DIRS "src/sensors")
+set(sensors_SETUP_PY_MODULES "")
+set(sensors_SETUP_PY_MODULE_DIRS "")

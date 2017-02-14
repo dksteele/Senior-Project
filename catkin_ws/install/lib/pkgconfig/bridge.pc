@@ -1,0 +1,8 @@
+prefix=/home/daniel/Documents/catkin_ws/install
+
+Name: bridge
+Description: Description of bridge
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/daniel/Documents/catkin_ws/install/lib 
+Requires: 

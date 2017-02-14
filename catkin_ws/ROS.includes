@@ -1,0 +1,4 @@
+devel/include/arduino_control
+devel/include/sensors
+src/sensors/resources
+src/sensors/resource
