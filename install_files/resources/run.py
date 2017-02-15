@@ -6,6 +6,7 @@ import shutil
 import os
 import sys
 import subprocess
+import time
 
 __args__ = None
 __proc_list__ = []
@@ -32,7 +33,8 @@ def start_core():
 	global __source__command__
 	global __proc_list__
 	
-	__proc_list__.append(subprocess.Popen(__source__command__ + "roscore & > " + __args__.logging_dir + "/roscore.log &", shell=True))
+	print "[INFO] : Starting Core"
+	__proc_list__.append(subprocess.Popen(__source__command__ + "roscore", stdout=open(__args__.logging_dir + "/roscore.log", 'w'), shell=True))
 	
 def run_components():
 	global __args__
@@ -40,13 +42,13 @@ def run_components():
 	global __proc_list__
 	
 	if(__args__.arduino_control):
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun arduino_control arduino_control > " + __args__.logging_dir + "/arduino_control.log &", shell=True))
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun joy joy_node & > " + __args__.logging_dir + "/joy.log &", shell=True))
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun bridge multicast_topic_bridge > " + __args__.logging_dir + "/multicast_bridge.log &", shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun arduino_control arduino_control", stdout=open(__args__.logging_dir + "/arduino_control.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun joy joy_node", stdout=open(__args__.logging_dir + "/joy.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun bridge multicast_topic_bridge", stdout=open(__args__.logging_dir + "/multicast_bridge.log", 'w'), shell=True))
 	if(__args__.sensing_manager):
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun sensors sensing_manager.py > " + __args__.logging_dir + "/sensing_manager.log &", shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun sensors sensing_manager.py", stdout=open(__args__.logging_dir + "/sensing_manager.log", 'w'), shell=True))
 	if(__args__.pi_camera):
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun sensors pi_camera.py & > " + __args__.logging_dir + "/pi_camera.log &", shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun sensors pi_camera.py", stdout=open(__args__.logging_dir + "/pi_camera.log", 'w'), shell=True))
 	
 def main():
 	global __args__
@@ -84,6 +86,7 @@ def main():
 	run_components()
 	
 	while(True):
+		time.sleep(120)
 		continue
 
 if __name__ == "__main__":

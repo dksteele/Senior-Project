@@ -16,7 +16,7 @@ def has_ros_params():
 	if(not has_params):
 		return False
 	
-	param_file = open(__PROGRAM_DIR__ + "rosparam.config", 'w')
+	param_file = open(__PROGRAM_DIR__ + "/rosparam.config", 'w')
 	
 	param_pair = raw_input("[PROMPT] : Input paramameter as \"parameter : value\" (\"DONE\" when finished) -> ")
 	while(not param_pair.upper() == "DONE"):
