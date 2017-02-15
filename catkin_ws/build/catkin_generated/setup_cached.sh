@@ -7,4 +7,8 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/daniel/Documents/catkin_ws/build"
+export LD_LIBRARY_PATH="/home/daniel/Documents/catkin_ws/devel/lib:/opt/ros/kinetic/lib"
+export PKG_CONFIG_PATH="/home/daniel/Documents/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig"
+export PWD="/home/daniel/Documents/Senior-Project/catkin_ws/build"
+export PYTHONPATH="/home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages"
+export ROS_PACKAGE_PATH="/home/daniel/Documents/Senior-Project/catkin_ws/src:/home/daniel/Documents/catkin_ws/src:/opt/ros/kinetic/share"

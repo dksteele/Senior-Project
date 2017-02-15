@@ -47,7 +47,7 @@ def run_components():
 		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun sensors sensing_manager.py > " + __args__.logging_dir + "/sensing_manager.log &", shell=True))
 	if(__args__.pi_camera):
 		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun sensors pi_camera.py & > " + __args__.logging_dir + "/pi_camera.log &", shell=True))
-	print __source__command__ + "rosrun sensors pi_camera.py > " + __args__.logging_dir + "/pi_camera.log &"
+	
 def main():
 	global __args__
 	global __source__command__
@@ -76,7 +76,7 @@ def main():
 	
 	if(__args__.core):
 		start_core()
-		while (not subprocess.check_output("top -b -n1 | grep rosmaster", shell=True)):
+		while (not os.system("top -b -n1 | grep rosmaster") == 0):
 			continue
 	if(__args__.params_file):
 		setup_params()

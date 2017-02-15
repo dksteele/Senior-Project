@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/daniel/Documents/catkin_ws/src/bridge/src/multicast_topic_bridge.cpp" "/home/daniel/Documents/catkin_ws/build/bridge/CMakeFiles/multicast_topic_bridge.dir/src/multicast_topic_bridge.cpp.o"
+  "/home/daniel/Documents/Senior-Project/catkin_ws/src/bridge/src/multicast_topic_bridge.cpp" "/home/daniel/Documents/Senior-Project/catkin_ws/build/bridge/CMakeFiles/multicast_topic_bridge.dir/src/multicast_topic_bridge.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,7 +17,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/daniel/Documents/catkin_ws/src/bridge/include"
+  "/home/daniel/Documents/Senior-Project/catkin_ws/src/bridge/include"
   "/opt/ros/kinetic/include"
   )
 

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/daniel/Documents/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/daniel/Documents/catkin_ws/build
+CMAKE_BINARY_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/build
 
 # Utility rule file for _arduino_control_generate_messages_check_deps_ArduinoControl.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /home/daniel/Documents/catkin_ws/build
 include arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/progress.make
 
 arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl:
-	cd /home/daniel/Documents/catkin_ws/build/arduino_control && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py arduino_control /home/daniel/Documents/catkin_ws/src/arduino_control/msg/ArduinoControl.msg 
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/msg/ArduinoControl.msg 
 
 _arduino_control_generate_messages_check_deps_ArduinoControl: arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl
 _arduino_control_generate_messages_check_deps_ArduinoControl: arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/build.make
@@ -67,10 +67,10 @@ arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_Arduino
 .PHONY : arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/build
 
 arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/clean:
-	cd /home/daniel/Documents/catkin_ws/build/arduino_control && $(CMAKE_COMMAND) -P CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/cmake_clean.cmake
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control && $(CMAKE_COMMAND) -P CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/cmake_clean.cmake
 .PHONY : arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/clean
 
 arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/depend:
-	cd /home/daniel/Documents/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/catkin_ws/src /home/daniel/Documents/catkin_ws/src/arduino_control /home/daniel/Documents/catkin_ws/build /home/daniel/Documents/catkin_ws/build/arduino_control /home/daniel/Documents/catkin_ws/build/arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/Senior-Project/catkin_ws/src /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/build /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : arduino_control/CMakeFiles/_arduino_control_generate_messages_check_deps_ArduinoControl.dir/depend
 

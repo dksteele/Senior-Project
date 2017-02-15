@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/arduino_control_generate_messages_lisp"
-  "/home/daniel/Documents/catkin_ws/devel/share/common-lisp/ros/arduino_control/msg/ArduinoControl.lisp"
+  "/home/daniel/Documents/Senior-Project/catkin_ws/devel/share/common-lisp/ros/arduino_control/msg/ArduinoControl.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -43,27 +43,27 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/daniel/Documents/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/daniel/Documents/catkin_ws/build
+CMAKE_BINARY_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/build
 
 # Utility rule file for arduino_control_generate_messages_cpp.
 
 # Include the progress variables for this target.
 include arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/progress.make
 
-arduino_control/CMakeFiles/arduino_control_generate_messages_cpp: /home/daniel/Documents/catkin_ws/devel/include/arduino_control/ArduinoControl.h
+arduino_control/CMakeFiles/arduino_control_generate_messages_cpp: /home/daniel/Documents/Senior-Project/catkin_ws/devel/include/arduino_control/ArduinoControl.h
 
 
-/home/daniel/Documents/catkin_ws/devel/include/arduino_control/ArduinoControl.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
-/home/daniel/Documents/catkin_ws/devel/include/arduino_control/ArduinoControl.h: /home/daniel/Documents/catkin_ws/src/arduino_control/msg/ArduinoControl.msg
-/home/daniel/Documents/catkin_ws/devel/include/arduino_control/ArduinoControl.h: /opt/ros/kinetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/daniel/Documents/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from arduino_control/ArduinoControl.msg"
-	cd /home/daniel/Documents/catkin_ws/build/arduino_control && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/daniel/Documents/catkin_ws/src/arduino_control/msg/ArduinoControl.msg -Iarduino_control:/home/daniel/Documents/catkin_ws/src/arduino_control/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p arduino_control -o /home/daniel/Documents/catkin_ws/devel/include/arduino_control -e /opt/ros/kinetic/share/gencpp/cmake/..
+/home/daniel/Documents/Senior-Project/catkin_ws/devel/include/arduino_control/ArduinoControl.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
+/home/daniel/Documents/Senior-Project/catkin_ws/devel/include/arduino_control/ArduinoControl.h: /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/msg/ArduinoControl.msg
+/home/daniel/Documents/Senior-Project/catkin_ws/devel/include/arduino_control/ArduinoControl.h: /opt/ros/kinetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from arduino_control/ArduinoControl.msg"
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/msg/ArduinoControl.msg -Iarduino_control:/home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p arduino_control -o /home/daniel/Documents/Senior-Project/catkin_ws/devel/include/arduino_control -e /opt/ros/kinetic/share/gencpp/cmake/..
 
 arduino_control_generate_messages_cpp: arduino_control/CMakeFiles/arduino_control_generate_messages_cpp
-arduino_control_generate_messages_cpp: /home/daniel/Documents/catkin_ws/devel/include/arduino_control/ArduinoControl.h
+arduino_control_generate_messages_cpp: /home/daniel/Documents/Senior-Project/catkin_ws/devel/include/arduino_control/ArduinoControl.h
 arduino_control_generate_messages_cpp: arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/build.make
 
 .PHONY : arduino_control_generate_messages_cpp
@@ -74,10 +74,10 @@ arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/build: ardu
 .PHONY : arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/build
 
 arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/clean:
-	cd /home/daniel/Documents/catkin_ws/build/arduino_control && $(CMAKE_COMMAND) -P CMakeFiles/arduino_control_generate_messages_cpp.dir/cmake_clean.cmake
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control && $(CMAKE_COMMAND) -P CMakeFiles/arduino_control_generate_messages_cpp.dir/cmake_clean.cmake
 .PHONY : arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/clean
 
 arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/depend:
-	cd /home/daniel/Documents/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/catkin_ws/src /home/daniel/Documents/catkin_ws/src/arduino_control /home/daniel/Documents/catkin_ws/build /home/daniel/Documents/catkin_ws/build/arduino_control /home/daniel/Documents/catkin_ws/build/arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/Senior-Project/catkin_ws/src /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/build /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : arduino_control/CMakeFiles/arduino_control_generate_messages_cpp.dir/depend
 

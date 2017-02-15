@@ -1,8 +1,8 @@
-prefix=/home/daniel/Documents/catkin_ws/devel
+prefix=/home/daniel/Documents/Senior-Project/catkin_ws/devel
 
 Name: bridge
 Description: Description of bridge
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/daniel/Documents/catkin_ws/devel/lib 
+Libs: -L/home/daniel/Documents/Senior-Project/catkin_ws/devel/lib 
 Requires: 

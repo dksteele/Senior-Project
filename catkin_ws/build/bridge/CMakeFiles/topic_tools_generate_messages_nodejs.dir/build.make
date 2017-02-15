@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/daniel/Documents/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/daniel/Documents/catkin_ws/build
+CMAKE_BINARY_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/build
 
 # Utility rule file for topic_tools_generate_messages_nodejs.
 
@@ -63,10 +63,10 @@ bridge/CMakeFiles/topic_tools_generate_messages_nodejs.dir/build: topic_tools_ge
 .PHONY : bridge/CMakeFiles/topic_tools_generate_messages_nodejs.dir/build
 
 bridge/CMakeFiles/topic_tools_generate_messages_nodejs.dir/clean:
-	cd /home/daniel/Documents/catkin_ws/build/bridge && $(CMAKE_COMMAND) -P CMakeFiles/topic_tools_generate_messages_nodejs.dir/cmake_clean.cmake
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/bridge && $(CMAKE_COMMAND) -P CMakeFiles/topic_tools_generate_messages_nodejs.dir/cmake_clean.cmake
 .PHONY : bridge/CMakeFiles/topic_tools_generate_messages_nodejs.dir/clean
 
 bridge/CMakeFiles/topic_tools_generate_messages_nodejs.dir/depend:
-	cd /home/daniel/Documents/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/catkin_ws/src /home/daniel/Documents/catkin_ws/src/bridge /home/daniel/Documents/catkin_ws/build /home/daniel/Documents/catkin_ws/build/bridge /home/daniel/Documents/catkin_ws/build/bridge/CMakeFiles/topic_tools_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/Senior-Project/catkin_ws/src /home/daniel/Documents/Senior-Project/catkin_ws/src/bridge /home/daniel/Documents/Senior-Project/catkin_ws/build /home/daniel/Documents/Senior-Project/catkin_ws/build/bridge /home/daniel/Documents/Senior-Project/catkin_ws/build/bridge/CMakeFiles/topic_tools_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : bridge/CMakeFiles/topic_tools_generate_messages_nodejs.dir/depend
 

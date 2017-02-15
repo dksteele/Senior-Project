@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o"
-  "/home/daniel/Documents/catkin_ws/devel/lib/arduino_control/arduino_control.pdb"
-  "/home/daniel/Documents/catkin_ws/devel/lib/arduino_control/arduino_control"
+  "/home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/arduino_control/arduino_control.pdb"
+  "/home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/arduino_control/arduino_control"
 )
 
 # Per-language clean rules from dependency scanning.

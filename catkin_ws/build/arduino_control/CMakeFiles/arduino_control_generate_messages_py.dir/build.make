@@ -43,33 +43,33 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/daniel/Documents/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/daniel/Documents/catkin_ws/build
+CMAKE_BINARY_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/build
 
 # Utility rule file for arduino_control_generate_messages_py.
 
 # Include the progress variables for this target.
 include arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/progress.make
 
-arduino_control/CMakeFiles/arduino_control_generate_messages_py: /home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py
-arduino_control/CMakeFiles/arduino_control_generate_messages_py: /home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/__init__.py
+arduino_control/CMakeFiles/arduino_control_generate_messages_py: /home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py
+arduino_control/CMakeFiles/arduino_control_generate_messages_py: /home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/__init__.py
 
 
-/home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
-/home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py: /home/daniel/Documents/catkin_ws/src/arduino_control/msg/ArduinoControl.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/daniel/Documents/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG arduino_control/ArduinoControl"
-	cd /home/daniel/Documents/catkin_ws/build/arduino_control && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/daniel/Documents/catkin_ws/src/arduino_control/msg/ArduinoControl.msg -Iarduino_control:/home/daniel/Documents/catkin_ws/src/arduino_control/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p arduino_control -o /home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg
+/home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
+/home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py: /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/msg/ArduinoControl.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG arduino_control/ArduinoControl"
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/msg/ArduinoControl.msg -Iarduino_control:/home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p arduino_control -o /home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg
 
-/home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/__init__.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
-/home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/__init__.py: /home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/daniel/Documents/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python msg __init__.py for arduino_control"
-	cd /home/daniel/Documents/catkin_ws/build/arduino_control && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg --initpy
+/home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/__init__.py: /opt/ros/kinetic/lib/genpy/genmsg_py.py
+/home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/__init__.py: /home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python msg __init__.py for arduino_control"
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/kinetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg --initpy
 
 arduino_control_generate_messages_py: arduino_control/CMakeFiles/arduino_control_generate_messages_py
-arduino_control_generate_messages_py: /home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py
-arduino_control_generate_messages_py: /home/daniel/Documents/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/__init__.py
+arduino_control_generate_messages_py: /home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/_ArduinoControl.py
+arduino_control_generate_messages_py: /home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/python2.7/dist-packages/arduino_control/msg/__init__.py
 arduino_control_generate_messages_py: arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/build.make
 
 .PHONY : arduino_control_generate_messages_py
@@ -80,10 +80,10 @@ arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/build: ardui
 .PHONY : arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/build
 
 arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/clean:
-	cd /home/daniel/Documents/catkin_ws/build/arduino_control && $(CMAKE_COMMAND) -P CMakeFiles/arduino_control_generate_messages_py.dir/cmake_clean.cmake
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control && $(CMAKE_COMMAND) -P CMakeFiles/arduino_control_generate_messages_py.dir/cmake_clean.cmake
 .PHONY : arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/clean
 
 arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/depend:
-	cd /home/daniel/Documents/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/catkin_ws/src /home/daniel/Documents/catkin_ws/src/arduino_control /home/daniel/Documents/catkin_ws/build /home/daniel/Documents/catkin_ws/build/arduino_control /home/daniel/Documents/catkin_ws/build/arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/Senior-Project/catkin_ws/src /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/build /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : arduino_control/CMakeFiles/arduino_control_generate_messages_py.dir/depend
 

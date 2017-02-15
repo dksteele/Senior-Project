@@ -18,9 +18,10 @@ def output_debug_message(msg):
 	print datetime.datetime.now(), msg
 
 def recieve_sensing_information(data):
+	pass
 		
 def sensing_thread():
-	s = rospy.Subscriber("tmp", String, recieve_sensing_information)
+	pass#s = rospy.Subscriber("tmp", String, recieve_sensing_information)
 	
 def register_callback(req):
 	global __registered_nodes__

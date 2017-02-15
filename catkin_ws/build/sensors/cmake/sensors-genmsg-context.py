@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
 messages_str = ""
-services_str = "/home/daniel/Documents/catkin_ws/src/sensors/srv/RegistrationService.srv"
+services_str = "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/srv/RegistrationService.srv"
 pkg_name = "sensors"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

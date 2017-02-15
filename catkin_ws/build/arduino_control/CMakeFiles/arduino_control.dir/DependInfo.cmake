@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/daniel/Documents/catkin_ws/src/arduino_control/src/arduino_control.cpp" "/home/daniel/Documents/catkin_ws/build/arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o"
+  "/home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/src/arduino_control.cpp" "/home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -17,8 +17,8 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/daniel/Documents/catkin_ws/devel/include"
-  "/home/daniel/Documents/catkin_ws/src/arduino_control/include"
+  "/home/daniel/Documents/Senior-Project/catkin_ws/devel/include"
+  "/home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/include"
   "/opt/ros/kinetic/include"
   )
 

@@ -14,20 +14,20 @@ fi
 
 echo_and_run() { echo "+ $@" ; "$@" ; }
 
-echo_and_run cd "/home/daniel/Documents/catkin_ws/src/sensors"
+echo_and_run cd "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors"
 
 # snsure that Python install destination exists
-echo_and_run mkdir -p "$DESTDIR/home/daniel/Documents/catkin_ws/install/lib/python2.7/dist-packages"
+echo_and_run mkdir -p "$DESTDIR/home/daniel/Documents/Senior-Project/catkin_ws/install/lib/python2.7/dist-packages"
 
 # Note that PYTHONPATH is pulled from the environment to support installing
 # into one location when some dependencies were installed in another
 # location, #123.
 echo_and_run /usr/bin/env \
-    PYTHONPATH="/home/daniel/Documents/catkin_ws/install/lib/python2.7/dist-packages:/home/daniel/Documents/catkin_ws/build/lib/python2.7/dist-packages:$PYTHONPATH" \
-    CATKIN_BINARY_DIR="/home/daniel/Documents/catkin_ws/build" \
+    PYTHONPATH="/home/daniel/Documents/Senior-Project/catkin_ws/install/lib/python2.7/dist-packages:/home/daniel/Documents/Senior-Project/catkin_ws/build/lib/python2.7/dist-packages:$PYTHONPATH" \
+    CATKIN_BINARY_DIR="/home/daniel/Documents/Senior-Project/catkin_ws/build" \
     "/usr/bin/python" \
-    "/home/daniel/Documents/catkin_ws/src/sensors/setup.py" \
-    build --build-base "/home/daniel/Documents/catkin_ws/build/sensors" \
+    "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/setup.py" \
+    build --build-base "/home/daniel/Documents/Senior-Project/catkin_ws/build/sensors" \
     install \
     $DESTDIR_ARG \
-    --install-layout=deb --prefix="/home/daniel/Documents/catkin_ws/install" --install-scripts="/home/daniel/Documents/catkin_ws/install/bin"
+    --install-layout=deb --prefix="/home/daniel/Documents/Senior-Project/catkin_ws/install" --install-scripts="/home/daniel/Documents/Senior-Project/catkin_ws/install/bin"

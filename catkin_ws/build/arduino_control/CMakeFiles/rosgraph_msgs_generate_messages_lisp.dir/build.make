@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/daniel/Documents/catkin_ws/src
+CMAKE_SOURCE_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/daniel/Documents/catkin_ws/build
+CMAKE_BINARY_DIR = /home/daniel/Documents/Senior-Project/catkin_ws/build
 
 # Utility rule file for rosgraph_msgs_generate_messages_lisp.
 
@@ -63,10 +63,10 @@ arduino_control/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build: rosgr
 .PHONY : arduino_control/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 
 arduino_control/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean:
-	cd /home/daniel/Documents/catkin_ws/build/arduino_control && $(CMAKE_COMMAND) -P CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/cmake_clean.cmake
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control && $(CMAKE_COMMAND) -P CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/cmake_clean.cmake
 .PHONY : arduino_control/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/clean
 
 arduino_control/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend:
-	cd /home/daniel/Documents/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/catkin_ws/src /home/daniel/Documents/catkin_ws/src/arduino_control /home/daniel/Documents/catkin_ws/build /home/daniel/Documents/catkin_ws/build/arduino_control /home/daniel/Documents/catkin_ws/build/arduino_control/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/daniel/Documents/Senior-Project/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/daniel/Documents/Senior-Project/catkin_ws/src /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/build /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control /home/daniel/Documents/Senior-Project/catkin_ws/build/arduino_control/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : arduino_control/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend
 

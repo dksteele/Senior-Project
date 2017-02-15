@@ -1,8 +1,8 @@
-# Install script for directory: /home/daniel/Documents/catkin_ws/src/bridge
+# Install script for directory: /home/daniel/Documents/Senior-Project/catkin_ws/src/bridge
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/daniel/Documents/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/daniel/Documents/Senior-Project/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,18 +33,18 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/daniel/Documents/catkin_ws/build/bridge/catkin_generated/installspace/bridge.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/daniel/Documents/Senior-Project/catkin_ws/build/bridge/catkin_generated/installspace/bridge.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bridge/cmake" TYPE FILE FILES
-    "/home/daniel/Documents/catkin_ws/build/bridge/catkin_generated/installspace/bridgeConfig.cmake"
-    "/home/daniel/Documents/catkin_ws/build/bridge/catkin_generated/installspace/bridgeConfig-version.cmake"
+    "/home/daniel/Documents/Senior-Project/catkin_ws/build/bridge/catkin_generated/installspace/bridgeConfig.cmake"
+    "/home/daniel/Documents/Senior-Project/catkin_ws/build/bridge/catkin_generated/installspace/bridgeConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bridge" TYPE FILE FILES "/home/daniel/Documents/catkin_ws/src/bridge/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/bridge" TYPE FILE FILES "/home/daniel/Documents/Senior-Project/catkin_ws/src/bridge/package.xml")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -54,7 +54,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/bridge/multicast_topic_bridge"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bridge" TYPE EXECUTABLE FILES "/home/daniel/Documents/catkin_ws/devel/lib/bridge/multicast_topic_bridge")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/bridge" TYPE EXECUTABLE FILES "/home/daniel/Documents/Senior-Project/catkin_ws/devel/lib/bridge/multicast_topic_bridge")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/bridge/multicast_topic_bridge" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/bridge/multicast_topic_bridge")
     file(RPATH_CHANGE
