@@ -16,7 +16,7 @@
 struct shared_program_data
 {
 	// Data, New Data Flag, and Mutex
-	uint8_t* data;
+	unsigned char* data;
 	int data_size;
 	bool new_msg;
 	pthread_mutex_t modifying_msg;
@@ -48,19 +48,21 @@ void output_debug_message(std::string s){
 /*
  * Callback for the subscriber function
 */
-void topic_callback(const topic_tools::ShapeShifter::ConstPtr& msg){
-	
+void topic_callback(const boost::shared_ptr<topic_tools::ShapeShifter const>& msg){
 	//Make a buffer to hold the serialized data
 	data.data_size = ros::serialization::serializationLength(*msg);
     std::vector<uint8_t> buffer(data.data_size);
+ 
     
     //Stram the serialized data into the buffer
     ros::serialization::OStream os(&buffer[0], data.data_size);
     ros::serialization::Serializer<topic_tools::ShapeShifter>::write(os, *msg);
 	
+
 	//Put the new message into the structure and set the new message flag
 	pthread_mutex_lock(&(data.modifying_msg));
-	data.data = &buffer[0];
+	data.data = (unsigned char*) malloc((sizeof(unsigned char) * data.data_size));
+	memcpy(data.data, &buffer[0], data.data_size);
 	data.new_msg = true;
 	pthread_mutex_unlock(&(data.modifying_msg));
 }
@@ -110,8 +112,10 @@ void* multicasting_socket(void* argv){
 			pthread_exit(0);
 		
 		//Check For New Message And Send If Available Then Wait Till Next Check Is Needed
-		pthread_mutex_lock(&(args->modifying_msg));
+		
 		if(args->new_msg){
+			pthread_mutex_lock(&(args->modifying_msg));
+
 			if(sendto(args->s, args->data, args->data_size, 0, (struct sockaddr *) &addr, sizeof(addr)) < 0)
 				output_debug_message("[ ERROR ] : Failed To Send Message");
 			else
@@ -147,7 +151,7 @@ int main(int argc, char* argv[])
 	signal(SIGINT, close_program);	
 	
 	//Initialize The ROS NodeHandle
-	ros::init(argc, argv, "multicast_topic_bridge");
+	ros::init(argc, argv, "multicast_topic_bridge", ros::init_options::NoSigintHandler);
 	ros::NodeHandle nh;
 	
 	//Retrieve all parameters
@@ -155,7 +159,7 @@ int main(int argc, char* argv[])
 	nh.param<std::string>("multicast_topic_bridge/topic", topic_name, "multicast_topic");
 	nh.param<std::string>("multicast_topic_bridge/multicating_group_addr", data.MULTICAST_GROUP_ADDRESS, "224.0.1.1");
 	nh.param<int>("multicast_topic_bridge/sending_port", data.SENDING_PORT, 1234);
-	nh.param<int>("multicast_topic_bridge/frequency", data.FREQUENCY, 0);
+	nh.param<int>("multicast_topic_bridge/frequency", data.FREQUENCY, 1);
 	
 	//Subscribe to parameter for topic_name
 	ros::Subscriber sub = nh.subscribe<topic_tools::ShapeShifter>(topic_name, 1, topic_callback);

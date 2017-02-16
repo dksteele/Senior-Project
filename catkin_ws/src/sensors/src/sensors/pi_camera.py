@@ -14,6 +14,8 @@ def send_image_stream():
 def register():
 	proxy = rospy.ServiceProxy('sensors_register', RegistrationService)
 	
+	utput_debug_message("[INFO] : Waiting for registration")
+	
 	registered = False
 	while(not registered):
 		try:
@@ -22,7 +24,7 @@ def register():
 		except rospy.service.ServiceException:
 			pass
 			
-	print ret.topic
+	output_debug_message("[INFO] : Registered for topic - " + ret.topic)
 
 def main():
 	rospy.init_node('py_camera')
@@ -30,6 +32,7 @@ def main():
 	
 	platform_name = rospy.get_param("node/platform_name", "CameraStation")
 	
+	send_image_stream()
 	
 if __name__ == "__main__":
 	main()

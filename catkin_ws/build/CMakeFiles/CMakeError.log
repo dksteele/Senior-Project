@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_8d7e6/fast"
-/usr/bin/make -f CMakeFiles/cmTC_8d7e6.dir/build.make CMakeFiles/cmTC_8d7e6.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_d1ffa/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d1ffa.dir/build.make CMakeFiles/cmTC_d1ffa.dir/build
 make[1]: Entering directory '/home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_8d7e6.dir/CheckSymbolExists.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_8d7e6.dir/CheckSymbolExists.c.o   -c /home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_8d7e6
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8d7e6.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_8d7e6.dir/CheckSymbolExists.c.o  -o cmTC_8d7e6 -rdynamic 
-CMakeFiles/cmTC_8d7e6.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_d1ffa.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_d1ffa.dir/CheckSymbolExists.c.o   -c /home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_d1ffa
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d1ffa.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_d1ffa.dir/CheckSymbolExists.c.o  -o cmTC_d1ffa -rdynamic 
+CMakeFiles/cmTC_d1ffa.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_8d7e6.dir/build.make:97: recipe for target 'cmTC_8d7e6' failed
-make[1]: *** [cmTC_8d7e6] Error 1
+CMakeFiles/cmTC_d1ffa.dir/build.make:97: recipe for target 'cmTC_d1ffa' failed
+make[1]: *** [cmTC_d1ffa] Error 1
 make[1]: Leaving directory '/home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_8d7e6/fast' failed
-make: *** [cmTC_8d7e6/fast] Error 2
+Makefile:126: recipe for target 'cmTC_d1ffa/fast' failed
+make: *** [cmTC_d1ffa/fast] Error 2
 
 File /home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_c7708/fast"
-/usr/bin/make -f CMakeFiles/cmTC_c7708.dir/build.make CMakeFiles/cmTC_c7708.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_d226e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d226e.dir/build.make CMakeFiles/cmTC_d226e.dir/build
 make[1]: Entering directory '/home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_c7708.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_c7708.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_c7708
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c7708.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_c7708.dir/CheckFunctionExists.c.o  -o cmTC_c7708 -rdynamic -lpthreads 
+Building C object CMakeFiles/cmTC_d226e.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_d226e.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d226e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d226e.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_d226e.dir/CheckFunctionExists.c.o  -o cmTC_d226e -rdynamic -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_c7708.dir/build.make:97: recipe for target 'cmTC_c7708' failed
-make[1]: *** [cmTC_c7708] Error 1
+CMakeFiles/cmTC_d226e.dir/build.make:97: recipe for target 'cmTC_d226e' failed
+make[1]: *** [cmTC_d226e] Error 1
 make[1]: Leaving directory '/home/daniel/Documents/Senior-Project/catkin_ws/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_c7708/fast' failed
-make: *** [cmTC_c7708/fast] Error 2
+Makefile:126: recipe for target 'cmTC_d226e/fast' failed
+make: *** [cmTC_d226e/fast] Error 2
 
 
