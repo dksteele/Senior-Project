@@ -95,10 +95,10 @@
   "7528cb4c6fd33cf9e3157bf84136adec")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ArduinoControl>)))
   "Returns full string definition for message of type '<ArduinoControl>"
-  (cl:format cl:nil "float64 dir			#Direction in degrees with 0 degrees being forward~%float64 speed		#Magnitude of direction -1 to 1~%~%~%"))
+  (cl:format cl:nil "float64 dir			#Direction in degrees with 0 degrees being forward~%float64 speed			#Magnitude of direction -1 to 1~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'ArduinoControl)))
   "Returns full string definition for message of type 'ArduinoControl"
-  (cl:format cl:nil "float64 dir			#Direction in degrees with 0 degrees being forward~%float64 speed		#Magnitude of direction -1 to 1~%~%~%"))
+  (cl:format cl:nil "float64 dir			#Direction in degrees with 0 degrees being forward~%float64 speed			#Magnitude of direction -1 to 1~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <ArduinoControl>))
   (cl:+ 0
      8

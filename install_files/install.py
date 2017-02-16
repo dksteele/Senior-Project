@@ -20,7 +20,7 @@ def has_ros_params():
 	
 	param_pair = raw_input("[PROMPT] : Input paramameter as \"parameter : value\" (\"DONE\" when finished) -> ")
 	while(not param_pair.upper() == "DONE"):
-		param_file.write(param_pair)
+		param_file.write(param_pair + "\n")
 		param_pair = raw_input("[PROMPT] : Input paramameter as \"parameter : value\" (\"DONE\" when finished) -> ")
 
 	param_file.close()

@@ -59,7 +59,7 @@ class ArduinoControl {
     // Returns full string definition for message
     return `
     float64 dir			#Direction in degrees with 0 degrees being forward
-    float64 speed		#Magnitude of direction -1 to 1
+    float64 speed			#Magnitude of direction -1 to 1
     
     `;
   }

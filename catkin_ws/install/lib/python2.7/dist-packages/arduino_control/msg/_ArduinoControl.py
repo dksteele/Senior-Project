@@ -11,7 +11,7 @@ class ArduinoControl(genpy.Message):
   _type = "arduino_control/ArduinoControl"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """float64 dir			#Direction in degrees with 0 degrees being forward
-float64 speed		#Magnitude of direction -1 to 1
+float64 speed			#Magnitude of direction -1 to 1
 """
   __slots__ = ['dir','speed']
   _slot_types = ['float64','float64']

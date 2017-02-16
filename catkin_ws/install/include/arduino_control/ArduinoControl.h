@@ -143,7 +143,7 @@ struct Definition< ::arduino_control::ArduinoControl_<ContainerAllocator> >
   static const char* value()
   {
     return "float64 dir			#Direction in degrees with 0 degrees being forward\n\
-float64 speed		#Magnitude of direction -1 to 1\n\
+float64 speed			#Magnitude of direction -1 to 1\n\
 ";
   }
 
