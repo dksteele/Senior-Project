@@ -1,7 +1,6 @@
 #include <ros.h>
 #include <arduino_control/ArduinoControl.h>
 #include <Ethernet.h>
-#include <EthernetUdp.h>
 #include <SPI.h>
 #include <utility/w5100.h>
 
@@ -35,7 +34,11 @@ void setup(){
   while(!Ethernet.begin(mac));
 
   //Setup socket s to utilize udp multicasting
-  udp.beginMulticast(IPAddress(multicast_ip), 1234);
+  W5100.writeSnDIPR(s, multicast_ip);
+  W5100.writeSnDPORT(s, multicast_port);
+  W5100.writeSnDHAR(s, multicast_mac);
+  W5100.writeSnMR(s, SnMR::UDP | SnMR::MULTI);
+  W5100.execCmdSn(s, Sock_OPEN);
 }
 
 void loop(){
