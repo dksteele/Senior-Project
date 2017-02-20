@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(sensors)
 
-find_package(catkin REQUIRED COMPONENTS rospy message_generation std_msgs)
+find_package(catkin REQUIRED COMPONENTS rospy message_generation std_msgs sensor_msgs)
 catkin_python_setup()
 
 add_service_files(FILES RegistrationService.srv)
-generate_messages(DEPENDENCIES std_msgs)
+generate_messages(DEPENDENCIES std_msgs sensor_msgs)
 
 catkin_package()
 
-install(PROGRAMS src/sensors/pi_camera.py src/sensors/sensing_manager.py
+install(PROGRAMS nodes/pi_camera.py nodes/sensing_manager.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

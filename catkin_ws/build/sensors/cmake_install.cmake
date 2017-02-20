@@ -93,8 +93,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/sensors" TYPE PROGRAM FILES
-    "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/src/sensors/pi_camera.py"
-    "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/src/sensors/sensing_manager.py"
+    "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/nodes/pi_camera.py"
+    "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/nodes/sensing_manager.py"
     )
 endif()
 

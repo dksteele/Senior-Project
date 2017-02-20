@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 import argparse
-import signal
-import shutil
 import os
-import sys
+import shutil
+import signal
 import subprocess
+import sys
 import time
 
 __args__ = None

@@ -14,7 +14,7 @@ def send_image_stream():
 def register():
 	proxy = rospy.ServiceProxy('sensors_register', RegistrationService)
 	
-	utput_debug_message("[INFO] : Waiting for registration")
+	output_debug_message("[INFO] : Waiting for registration")
 	
 	registered = False
 	while(not registered):
