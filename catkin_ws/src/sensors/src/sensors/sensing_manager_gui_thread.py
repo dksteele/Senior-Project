@@ -17,20 +17,22 @@ class SensingGUIThread(threading.Thread):
 					   RegistrationServiceRequest.ANALOG : Float64,
 					   RegistrationServiceRequest.DIGITAL : Float64}
 	gui_update_event = threading.Event()
+	pkg_name = ""
 					   
-	def __init__(self, name, registered_nodes, gui_update_event):
+	def __init__(self, name, registered_nodes, gui_update_event, pkg_name):
 		threading.Thread.__init__(self)
 		self.name = name
 		self.registered_nodes = registered_nodes
 		self.gui_update_event = gui_update_event
+		self.pkg_name = pkg_name
 		
 	def reset_sensor_display(self):
 		if self.registered_nodes[self.selected_node][1] == RegistrationServiceRequest.CAMERA :
-			print "CAMERA"
+			print "[INFO] : Seting Up Display For -> CAMERA"
 		elif self.registered_nodes[self.selected_node][1] == RegistrationServiceRequest.ANALOG :
-			print "ANALOG"
+			print "[INFO] : Seting Up Display For -> ANALOG"
 		elif self.registered_nodes[self.selected_node][1] == RegistrationServiceRequest.DIGITAL :
-			print "Digital"
+			print "[INFO] : Seting Up Display For -> DIGITAL"
 			
 	def get_gui_node_selection(self):
 		return self.selected_node

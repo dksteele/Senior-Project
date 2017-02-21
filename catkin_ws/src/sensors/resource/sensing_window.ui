@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Form</class>
- <widget class="QtWidget" name="Form">
+ <widget class="QWidget" name="Form">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>655</width>
+    <height>470</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QtTreeView" name="sensingTree">
+  <widget class="QTreeWidget" name="sensingTree" native="true">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>111</width>
-     <height>281</height>
+     <width>175</width>
+     <height>450</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="container" native="true">
+   <property name="geometry">
+    <rect>
+     <x>195</x>
+     <y>10</y>
+     <width>450</width>
+     <height>450</height>
     </rect>
    </property>
   </widget>
  </widget>
+
  <resources/>
  <connections/>
 </ui>
