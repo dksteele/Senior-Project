@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>Sensing Data Selector</class>
+ <widget class="QWidget" name="mainWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>655</width>
-    <height>470</height>
+    <width>600</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Sensing Data Selector</string>
   </property>
-  <widget class="QTreeWidget" name="sensingTree" native="true">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>175</width>
-     <height>450</height>
-    </rect>
+  <layout class="QHBoxLayout" name="layout">
+   <property name="spacing">
+    <number>10</number>
    </property>
-  </widget>
-  <widget class="QWidget" name="container" native="true">
-   <property name="geometry">
-    <rect>
-     <x>195</x>
-     <y>10</y>
-     <width>450</width>
-     <height>450</height>
-    </rect>
+   <property name="margin">
+    <number>10</number>
    </property>
-  </widget>
+   <item>
+    <widget class="QTreeWidget" name="sensorTree">
+     <property name="maximumSize">
+      <size>
+       <width>200</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <column>
+      <property name="text">
+       <string>Sensors</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="container" native="true"/>
+   </item>
+  </layout>
  </widget>
-
  <resources/>
  <connections/>
 </ui>

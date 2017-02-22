@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import rospkg
 import rospy
 from sensor_msgs.msg import *
 from std_msgs.msg import *
@@ -8,6 +9,10 @@ from sensors.srv import *
 import sys
 import threading
 import time
+
+from python_qt_binding import loadUi
+from python_qt_binding.QtCore import *
+from python_qt_binding.QtWidgets import *
 
 class SensingGUIThread(threading.Thread):
 	
@@ -18,6 +23,7 @@ class SensingGUIThread(threading.Thread):
 					   RegistrationServiceRequest.DIGITAL : Float64}
 	gui_update_event = threading.Event()
 	pkg_name = ""
+	main_widget = None
 					   
 	def __init__(self, name, registered_nodes, gui_update_event, pkg_name):
 		threading.Thread.__init__(self)
@@ -25,6 +31,11 @@ class SensingGUIThread(threading.Thread):
 		self.registered_nodes = registered_nodes
 		self.gui_update_event = gui_update_event
 		self.pkg_name = pkg_name
+		
+		self.application = QApplication([])
+		self.main_widget = QWidget()
+		loadUi(rospkg.RosPack().get_path(self.pkg_name) + "/resource/sensing_window.ui", self.main_widget)
+		self.main_widget.show()
 		
 	def reset_sensor_display(self):
 		if self.registered_nodes[self.selected_node][1] == RegistrationServiceRequest.CAMERA :
@@ -46,15 +57,11 @@ class SensingGUIThread(threading.Thread):
 			pass
 
 	def update_gui_tree(self):
-		return
-	
-	def init_gui(self):
-		return 
-		
+		if self.application == None or self.main_widget == None:
+			return False
+		return True
 		
 	def run(self):
-		
-		self.init_gui()
 		
 		while len(self.registered_nodes.keys()) == 0:
 			time.sleep(.1)

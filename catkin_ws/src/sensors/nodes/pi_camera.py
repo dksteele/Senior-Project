@@ -29,14 +29,9 @@ def register():
 	
 	output_debug_message("[INFO] : Waiting for registration")
 	
-	registered = False
-	while not registered and not rospy.is_shutdown():
-		try:
-			ret = proxy(__platform_name__, RegistrationServiceRequest.CAMERA);
-			__regisered_topic__ = ret.topic
-			registered = True
-		except rospy.service.ServiceException:
-			pass
+	rospy.wait_for_service('sensors_register')
+	ret = proxy(__platform_name__, RegistrationServiceRequest.CAMERA);
+	__regisered_topic__ = ret.topic
 			
 	output_debug_message("[INFO] : Registered for topic - " + ret.topic)
 

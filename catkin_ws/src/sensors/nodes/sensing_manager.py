@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import rospkg
 import rospy
 from sensors.srv import *
 from sensors import *
@@ -42,7 +41,7 @@ def main():
 	__register_service__ = rospy.Service('sensors_register', RegistrationService, register_callback)
 	
 	output_debug_message("[INFO] : Starting Sensing Thread")
-	__sensing_thread__ = SensingGUIThread("SensingThread", __registered_nodes__, __sensing_thread_update_tree_event__, "sensing_manager")
+	__sensing_thread__ = SensingGUIThread("SensingThread", __registered_nodes__, ui, "sensors")
 	__sensing_thread__.daemon = True
 	__sensing_thread__.start()
 	
