@@ -36,7 +36,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="container" native="true"/>
+    <widget class="QWidget" name="emptyContainer" native="true"/>
    </item>
   </layout>
  </widget>

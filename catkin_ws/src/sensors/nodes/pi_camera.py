@@ -30,7 +30,7 @@ def register():
 	output_debug_message("[INFO] : Waiting for registration")
 	
 	rospy.wait_for_service('sensors_register')
-	ret = proxy(__platform_name__, RegistrationServiceRequest.CAMERA);
+	ret = proxy(__platform_name__, RegistrationServiceRequest.ANALOG);
 	__regisered_topic__ = ret.topic
 			
 	output_debug_message("[INFO] : Registered for topic - " + ret.topic)
