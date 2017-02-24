@@ -1,1 +1,2 @@
-from sensing_manager_gui_thread import *
+from sensing_register import *
+from sensing_subscriber import *
