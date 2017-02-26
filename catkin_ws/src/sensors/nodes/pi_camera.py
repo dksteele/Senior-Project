@@ -3,8 +3,10 @@
 import rospy
 from sensors.srv import *
 from sensor_msgs.msg import *
+from std_msgs.msg import *
 
 import datetime
+import time
 
 __platform_name__ = ""
 __regisered_topic__ = ""
@@ -16,10 +18,10 @@ def send_image_stream():
 	global __regisered_topic__
 	
 	output_debug_message("[INFO] : Creating publisher on topic - " + __regisered_topic__)
-	pub = rospy.Publisher(__regisered_topic__, CompressedImage, queue_size=1)
+	pub = rospy.Publisher(__regisered_topic__, Float64, queue_size=1)
 	
 	while not rospy.is_shutdown():
-		pass
+		time.sleep(.1)
 	
 def register():
 	global __platform_name__
@@ -30,7 +32,7 @@ def register():
 	output_debug_message("[INFO] : Waiting for registration")
 	
 	rospy.wait_for_service('sensors_register')
-	ret = proxy(__platform_name__, RegistrationServiceRequest.ANALOG);
+	ret = proxy(__platform_name__, RegistrationServiceRequest.CAMERA);
 	__regisered_topic__ = ret.topic
 			
 	output_debug_message("[INFO] : Registered for topic - " + ret.topic)

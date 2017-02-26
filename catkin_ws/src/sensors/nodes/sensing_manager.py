@@ -18,6 +18,7 @@ __main_widget__ = None
 __registered_nodes__ = dict()
 __current_sensor_widget__ = None
 __subscriber_thread__ = None
+__tree_nodes__ = dict()
 
 class rospyAsyncSpin(threading.Thread):
 	def __init__(self):
@@ -40,8 +41,53 @@ def replace_widget_for_sensor():
 	
 	__current_sensor_widget__.deleteLater()
 	__current_sensor_widget__ = widget
+
+def update_widget_for_sensor(data):
+	global __registered_nodes__
+	global __current_sensor_widget__
 	
+	selected_node = __subscriber_thread__.get_selected_node()
 	
+	if selected_node == None:
+		return
+	elif __registered_nodes__[selected_node][1] == RegistrationServiceRequest.CAMERA :
+		pixmap = QPixmap()
+		pixmap.load(data.data, data.format.upper())
+		__current_sensor_widget__.scene().clear()
+		__current_sensor_widget__.scene().addPixmap(pixmap)
+		__current_sensor_widget__.scene().setSceneRect(QRectF(pixmap.rect()))	
+	elif __registered_nodes__[selected_node][1] == RegistrationServiceRequest.ANALOG or __registered_nodes__[selected_node][1] == RegistrationServiceRequest.DIGITAL:
+		if len(str(data.data)) > 8:
+			__current_sensor_widget__.setNumDigits(len(str(data.data)))
+		else:
+			__current_sensor_widget__.setNumDigits(8)
+		__current_sensor_widget__.display(data.data)	
+	
+def add_node_to_tree(node):
+	global __main_widget__
+	global __registered_nodes__
+	global __tree_nodes__
+	
+	#Create Top Level Item If Needed
+	if not (__registered_nodes__[node][0], None) in __tree_nodes__.keys():
+		root = QTreeWidgetItem([__registered_nodes__[node][0]])
+		root.setFlags(root.flags() & ~Qt.ItemIsSelectable)
+		__tree_nodes__[(__registered_nodes__[node][0], None)] = root
+		__main_widget__.sensorTree.insertTopLevelItem(0, root)
+	
+	#Create Item For Sensor Type If Needed
+	if not (__registered_nodes__[node][0], __registered_nodes__[node][1]) in __tree_nodes__.keys():
+		parent = QTreeWidgetItem(__tree_nodes__[(__registered_nodes__[node][0], None)], [__registered_nodes__[node][1]])
+		parent.setFlags(parent.flags() & ~Qt.ItemIsSelectable)
+		__tree_nodes__[(__registered_nodes__[node][0], __registered_nodes__[node][1])] = parent
+		
+	parent = __tree_nodes__[(__registered_nodes__[node][0], __registered_nodes__[node][1])]
+	
+	#Create Node
+	item = QTreeWidgetItem(parent, [str(node)])
+	item.setFlags(item.flags() | Qt.ItemIsSelectable)
+	item.setData(0, Qt.UserRole, node)
+
 def main():
 	global __application__
 	global __main_widget__
@@ -64,15 +110,18 @@ def main():
 	spin_thread.start()
 
 	__current_sensor_widget__ = __main_widget__.emptyContainer
-	__subscriber_thread__ = SensingSubscriber(__registered_nodes__, __main_widget__, __current_sensor_widget__)
+	__subscriber_thread__ = SensingSubscriber(__registered_nodes__, __main_widget__)
 	__subscriber_thread__.daemon = True
 	__subscriber_thread__.start()
 	
 	__subscriber_thread__.__replace_widget__.connect(replace_widget_for_sensor)
+	__subscriber_thread__.__update_widget__.connect(update_widget_for_sensor)
 	
-	register_thread = SensingRegister(__registered_nodes__, __main_widget__)
+	register_thread = SensingRegister(__registered_nodes__)
 	register_thread.daemon = True
 	register_thread.start()
+	
+	register_thread.__add_tree_node__.connect(add_node_to_tree)
 	
 	time.sleep(.1)
 	
@@ -81,7 +130,6 @@ def main():
 	output_debug_message("[INFO] : GUI Started ... Executing Application")
 	
 	__application__.exec_()
-
 	
 	
 if __name__ == "__main__":
