@@ -37,6 +37,7 @@ class SensingRegister(QThread):
 		
 		return RegistrationServiceResponse(topic)
 
+	#Setup service to register sensors on topics
 	def run(self):
 		output_debug_message("[INFO] : Starting Registration Service")
 		__register_service__ = rospy.Service('sensors_register', RegistrationService, self.register_callback)

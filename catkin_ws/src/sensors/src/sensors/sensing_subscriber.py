@@ -12,13 +12,10 @@ import datetime
 import time
 
 from python_qt_binding import loadUi, QtCore
-from python_qt_binding.QtCore import QVariant, Qt, QThread, QRectF
-from python_qt_binding.QtGui import QPixmap
-from python_qt_binding.QtWidgets import QWidget, QTreeWidget, QTreeWidgetItem, QLCDNumber, QGraphicsView, QGraphicsScene
+from python_qt_binding.QtCore import QVariant, Qt, QThread
 
 def output_debug_message(msg):
 	print datetime.datetime.now(), msg
-		
 
 class SensingSubscriber(QThread):
 	
@@ -47,26 +44,9 @@ class SensingSubscriber(QThread):
 	
 	def get_selected_node(self):
 		return self.__selected_node__
-	
-	def get_widget_for_sensor(self):
-		widget = QWidget()
-		if self.__registered_nodes__[self.__selected_node__][1] == RegistrationServiceRequest.CAMERA :
-			widget = QGraphicsView()
-			widget.setScene(QGraphicsScene())
-			pixmap = QPixmap()
-			print pixmap.load(rospkg.RosPack().get_path("sensors") + "/resource/no_data.jpeg", "JPEG")
-			widget.scene().addPixmap(pixmap)
-			widget.scene().setSceneRect(QRectF(pixmap.rect()))	
-			print "[INFO] : Seting Up Display For -> CAMERA"
-		elif self.__registered_nodes__[self.__selected_node__][1] == RegistrationServiceRequest.ANALOG or self.__registered_nodes__[self.__selected_node__][1] == RegistrationServiceRequest.DIGITAL:
-			widget = QLCDNumber()
-			widget.setNumDigits(8)
-			widget.display(0)
-			print "[INFO] : Seting Up Display For -> " + self.__registered_nodes__[self.__selected_node__][1]
-		return widget
 		
 	def run(self):
-		
+		#Watch for a change in selection and update the subscriber when things change
 		while True:
 			selections = self.__widget__.sensorTree.selectedItems()
 			new_selection = None

@@ -4,6 +4,8 @@
 #include <SPI.h>
 #include <utility/w5100.h>
 
+#define STOP_ON_STALE_STATUS false
+
 //Define Ports Used For Motor Control
 #define RDIR 7
 #define RPWM 9
@@ -21,9 +23,16 @@ int s = 0;
 
 arduino_control::ArduinoControl ac;
 EthernetUDP udp;
-void setup(){
+
+int millis_since_last_recieve = 0;
+
+void setup(){  
   Serial.begin(9600);
-  
+
+#if( STOP_ON_STALE_STATUS )
+	setup_timer_registers();
+#endif
+
   //Setup Outputs For Motor Control
   pinMode(LDIR, OUTPUT);
   pinMode(LPWM, OUTPUT);
@@ -57,21 +66,21 @@ void loop(){
     W5100.execCmdSn(s, Sock_RECV);
     
     //Deserialize the data
-    ac.deserialize(msg_buf);
-        
+    ac.deserialize(msg_buf);    
+
+#if( STOP_ON_STALE_STATUS )
+    millis_since_last_recieve++;
+#endif
+
     double lspeed = 255, rspeed = 255;
     
+    //Take the direction and speed and turn it into a actuall value which can then be scaled to follow the PWM values 0-255
     lspeed = (ac.dir > 0 ? lspeed * fabs(cos(ac.dir * PI / 180)): lspeed) * ac.speed;
     rspeed = (ac.dir > 0 ? rspeed : rspeed * fabs(cos(ac.dir * PI / 180))) * ac.speed;
 
     int normalization_val = scale(fabs(ceil(lspeed)), fabs(ceil(rspeed)), 255);
     lspeed = ceil(lspeed) * normalization_val;
     rspeed = ceil(rspeed) * normalization_val;
-    
-    Serial.print("L : ");
-    Serial.print(lspeed);
-    Serial.print(" R: ");
-    Serial.println(rspeed);
     
     setSpeed(lspeed, LPWM, LDIR);
     setSpeed(rspeed, RPWM, RDIR);
@@ -97,3 +106,19 @@ void setSpeed(int speed, int pwm_port, int dir_port){
   analogWrite(pwm_port, abs(speed));
 }
 
+//Setup timer on Timer0 to trigger every millisecond to check for a stale status.
+//Using Timer0 with milliseconds due to it's counter registers not being used by any PWM port that is set in other parts of the program
+void setup_timer_registers(){
+  
+  OCR0A = 0xFF;
+  TIMSK0 |= _BV(OCIE0A);
+}
+
+//Interupt register to stop the robot if the status of the motors has not changed in at least half a second
+ISR(TIMER0_COMPA_vect){
+  if (millis_since_last_recieve >= 500 ){
+    Serial.print("RECIEVE STATUS STALE -> STOPING MOTORS");
+    setSpeed(0, LPWM, LDIR);
+    setSpeed(0, RPWM, RDIR);
+  }
+}
