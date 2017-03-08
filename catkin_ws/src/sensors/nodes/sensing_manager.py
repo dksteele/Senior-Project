@@ -13,6 +13,7 @@ import time
 
 from python_qt_binding import loadUi
 from python_qt_binding.QtCore import QThread
+from python_qt_binding.QtGui import QPixmap
 from python_qt_binding.QtWidgets import QWidget, QApplication, QTreeWidget, QTreeWidgetItem, QLCDNumber, QGraphicsView, QGraphicsScene
 
 __main_widget__ = None
@@ -48,13 +49,12 @@ def replace_widget_for_sensor():
 		pixmap = QPixmap()
 		pixmap.load(rospkg.RosPack().get_path("sensors") + "/resource/no_data.jpeg", "JPEG")
 		widget.scene().addPixmap(pixmap)
-		widget.scene().setSceneRect(QRectF(pixmap.rect()))	
-		print "[INFO] : Seting Up Display For -> CAMERA"
+		widget.scene().setSceneRect(QRectF(pixmap.rect()))
 	elif __registered_nodes__[selected_node][1] == RegistrationServiceRequest.ANALOG or __registered_nodes__[selected_node][1] == RegistrationServiceRequest.DIGITAL:
 		widget = QLCDNumber()
 		widget.setNumDigits(8)
 		widget.display(0)
-		print "[INFO] : Seting Up Display For -> " + __registered_nodes__[selected_node][1]
+	print "[INFO] : Seting Up Display For -> " + __registered_nodes__[selected_node][1]
 	
 	__main_widget__.layout.replaceWidget(__current_sensor_widget__, widget)
 	

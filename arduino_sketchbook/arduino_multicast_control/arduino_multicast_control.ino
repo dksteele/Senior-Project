@@ -4,7 +4,10 @@
 #include <SPI.h>
 #include <utility/w5100.h>
 
+
+//Enable flags
 #define STOP_ON_STALE_STATUS false
+#define DEBUG true
 
 //Define Ports Used For Motor Control
 #define RDIR 7
@@ -27,7 +30,10 @@ EthernetUDP udp;
 int millis_since_last_recieve = 0;
 
 void setup(){  
+
+#if( DEBUG )
   Serial.begin(9600);
+#endif
 
 #if( STOP_ON_STALE_STATUS )
 	setup_timer_registers();
@@ -69,7 +75,7 @@ void loop(){
     ac.deserialize(msg_buf);    
 
 #if( STOP_ON_STALE_STATUS )
-    millis_since_last_recieve++;
+    millis_since_last_recieve = 0;
 #endif
 
     double lspeed = 255, rspeed = 255;
@@ -81,6 +87,14 @@ void loop(){
     int normalization_val = scale(fabs(ceil(lspeed)), fabs(ceil(rspeed)), 255);
     lspeed = ceil(lspeed) * normalization_val;
     rspeed = ceil(rspeed) * normalization_val;
+    
+#if( DEBUG )
+    Serial.print("L : ");
+    Serial.print(lspeed);
+    Serial.print(" ; R : ");
+    Serial.print(rspeed);
+    Serial.println(" ;");
+#endif
     
     setSpeed(lspeed, LPWM, LDIR);
     setSpeed(rspeed, RPWM, RDIR);
@@ -117,8 +131,14 @@ void setup_timer_registers(){
 //Interupt register to stop the robot if the status of the motors has not changed in at least half a second
 ISR(TIMER0_COMPA_vect){
   if (millis_since_last_recieve >= 500 ){
-    Serial.print("RECIEVE STATUS STALE -> STOPING MOTORS");
+  
+#if( DEBUG )
+    Serial.println("RECIEVE STATUS STALE -> STOPING MOTORS");
+#endif
+
     setSpeed(0, LPWM, LDIR);
     setSpeed(0, RPWM, RDIR);
   }
+  
+  millis_since_last_recieve++;
 }

@@ -86,30 +86,31 @@ def create_setup_file():
 		setup_file.write("ip_address=" + core_ip + "\n")
 	else:
 		setup_file.write("ip_address=$(ifconfig | grep " + interface + " -1 | cut -d: -f2 | cut -d' ' -f1)\n")
-		setup_file.write("export ROS_MASTER_URI=http://" + core_ip + "::11311\n")	
+		setup_file.write("export ROS_MASTER_URI=http://" + core_ip + "::11311/\n")	
 	setup_file.write("export ROS_HOSTNAME=$ip_address\n")
 	setup_file.write("export ROS_IP=$ip_address\n")
 	
 	setup_file.write(command + "\n")
 	
 	setup_file.close()
-	
+
+	os.system("chmod 755 " + __PROGRAM_DIR__ + "/start.sh")
+
+def install_packages():
 	print "[INFO] : Copying necessary instillation files"
 	if os.path.exists(__PROGRAM_DIR__ + "/install"):
 		shutil.rmtree(__PROGRAM_DIR__ + "/install")
 	shutil.copytree("./resources/install", __PROGRAM_DIR__ + "/install", True)
 	shutil.copy("./resources/run.py", __PROGRAM_DIR__ + "/run.py")
 		
-	os.system("chmod 755 " + __PROGRAM_DIR__ + "/start.sh")
 	os.system("chmod 755 " + __PROGRAM_DIR__ + "/run.py")
-	
+
 def create_service_file():
 	
 	print "[INFO] : Creating service"
 	
 	service_file = open("/etc/systemd/system/custom_ros.service", 'w')
 	
-	service_file.write("[Unit]\n")
 	service_file.write("Description=Service to start Senior Project at boot\n")
 	service_file.write("[Service]\n")
 	service_file.write("ExecStart=" + __PROGRAM_DIR__ + "/start.sh\n")
@@ -130,6 +131,7 @@ def install():
 	os.makedirs(__LOGGING_ARCHIVE_DIR__)
 	
 	create_setup_file()
+	install_packages()
 	create_service_file()
 	
 def main():

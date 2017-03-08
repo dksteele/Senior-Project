@@ -74,7 +74,7 @@ def main():
 	
 	__args__ = parser.parse_args()
 	
-	__source__command__ = ". /opt/ros/kinetic/setup.sh\n. " + __args__.install_dir + "/setup.sh\n"
+	__source__command__ = ". /opt/ros/kinetic/setup.sh\n. " + __args__.install_dir + "/env.sh\n"
 	
 	if(__args__.core):
 		start_core()

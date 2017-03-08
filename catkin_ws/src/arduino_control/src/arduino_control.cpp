@@ -12,11 +12,14 @@ double DEADZONE = 0;
 int joyCallback(const sensor_msgs::Joy::ConstPtr& msg){
 	arduino_control::ArduinoControl ac;
 	
-	ac.dir = atan2(-msg->axes[0], msg->axes[1]) * 180 / PI;		//Gets angle of the joystick in degrees with forward/top being 0 degrees
+	//Gets angle of the joystick in degrees with forward/top being 0 degrees
+	ac.dir = atan2(-msg->axes[0], msg->axes[1]) * 180 / PI;		
 	
-	ac.speed = sqrt(pow(msg->axes[1] , 2) + pow(msg->axes[0] , 2));	//Gets magnitude of the joystick movement
+	//Gets magnitude of the joystick movement
+	ac.speed = sqrt(pow(msg->axes[1] , 2) + pow(msg->axes[0] , 2));	
 	
-	if(fabs(msg->axes[0]) < DEADZONE && fabs(msg->axes[1]) < DEADZONE)	//Speed is 0 when within the deadzone of both axes
+	//Speed is 0 when within the deadzone of both axes
+	if(fabs(msg->axes[0]) < DEADZONE && fabs(msg->axes[1]) < DEADZONE)	
 		ac.speed = 0;
 	
 	controlPub.publish(ac);
