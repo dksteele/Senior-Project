@@ -59,6 +59,7 @@
 /home/daniel/Documents/Senior-Project/catkin_ws/install/share/sensors/package.xml
 /home/daniel/Documents/Senior-Project/catkin_ws/install/lib/sensors/pi_camera.py
 /home/daniel/Documents/Senior-Project/catkin_ws/install/lib/sensors/sensing_manager.py
+/home/daniel/Documents/Senior-Project/catkin_ws/install/lib/sensors/digital_tester.py
 /home/daniel/Documents/Senior-Project/catkin_ws/install/share/sensors/resource/no_data.jpeg
 /home/daniel/Documents/Senior-Project/catkin_ws/install/share/sensors/resource/sensing_window.ui
 /home/daniel/Documents/Senior-Project/catkin_ws/install/lib/pkgconfig/bridge.pc

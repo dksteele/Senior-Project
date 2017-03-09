@@ -42,13 +42,13 @@ def run_components():
 	global __proc_list__
 	
 	if(__args__.arduino_control):
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun arduino_control arduino_control", stdout=open(__args__.logging_dir + "/arduino_control.log", 'w'), shell=True))
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun joy joy_node", stdout=open(__args__.logging_dir + "/joy.log", 'w'), shell=True))
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun bridge multicast_topic_bridge", stdout=open(__args__.logging_dir + "/multicast_bridge.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun arduino_control arduino_control", stdout=open(__args__.logging_dir + "/arduino_control.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun joy joy_node", stdout=open(__args__.logging_dir + "/joy.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun bridge multicast_topic_bridge", stdout=open(__args__.logging_dir + "/multicast_bridge.log", 'w'), shell=True))
 	if(__args__.sensing_manager):
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun sensors sensing_manager.py", stdout=open(__args__.logging_dir + "/sensing_manager.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun sensors sensing_manager.py", stdout=open(__args__.logging_dir + "/sensing_manager.log", 'w'), shell=True))
 	if(__args__.pi_camera):
-		__proc_list__.append(subprocess.Popen(__source__command__ + "rosrun sensors pi_camera.py", stdout=open(__args__.logging_dir + "/pi_camera.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun sensors pi_camera.py", stdout=open(__args__.logging_dir + "/pi_camera.log", 'w'), shell=True))
 	
 def main():
 	global __args__
@@ -74,7 +74,7 @@ def main():
 	
 	__args__ = parser.parse_args()
 	
-	__source__command__ = ". /opt/ros/kinetic/setup.sh\n. " + __args__.install_dir + "/env.sh\n"
+	__source__command__ = ". /opt/ros/kinetic/setup.sh\n"
 	
 	if(__args__.core):
 		start_core()

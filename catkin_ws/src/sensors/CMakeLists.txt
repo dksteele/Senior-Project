@@ -9,7 +9,7 @@ generate_messages(DEPENDENCIES std_msgs sensor_msgs)
 
 catkin_package()
 
-install(PROGRAMS nodes/pi_camera.py nodes/sensing_manager.py
+install(PROGRAMS nodes/pi_camera.py nodes/sensing_manager.py nodes/digital_tester.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -95,6 +95,7 @@ if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/sensors" TYPE PROGRAM FILES
     "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/nodes/pi_camera.py"
     "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/nodes/sensing_manager.py"
+    "/home/daniel/Documents/Senior-Project/catkin_ws/src/sensors/nodes/digital_tester.py"
     )
 endif()
 

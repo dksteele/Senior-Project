@@ -1,51 +1,31 @@
 #!/usr/bin/env python
 
-import rospy
+import rospyNRHP
 from sensors.srv import *
-from sensor_msgs.msg import CompressedImage
-from std_msgs.msg import Header
+from std_msgs.msg import Float64
 
 import datetime
+import random
 import time
-
-from io import BytesIO
-
-from picamera import PiCamera
 
 __platform_name__ = ""
 __regisered_topic__ = ""
-__camera__ = None
 
 def output_debug_message(msg):
 	print datetime.datetime.now(), msg
-
+ 
 def send_image_stream():
 	global __regisered_topic__
 	global __camera__
 	
 	output_debug_message("[INFO] : Creating publisher on topic - " + __regisered_topic__)
-	pub = rospy.Publisher(__regisered_topic__, CompressedImage, queue_size=1)
-	
-	img_num = 0
+	pub = rospy.Publisher(__regisered_topic__, Float64, queue_size=1)
 	
 	while not rospy.is_shutdown():
+		Float64 number(random.randint(0, 100))
+		pub.publish(number)
 		
-		data = BytesIO()
-		__camera__.capture(data, 'jpeg', True)
-		data.truncate()
-		
-		img_num = img_num + 1
-		
-		header = Header()
-		header.seq = img_num
-		header.stamp = rospy.Time.now()
-		
-		msg = CompressedImage()
-		msg.format = "jpeg"
-		msg.data = data.getvalue()
-		
-		pub.publish(data)
-		time.sleep(.01)
+		time.sleep(1)
 	
 def register():
 	global __platform_name__
@@ -56,7 +36,7 @@ def register():
 	output_debug_message("[INFO] : Waiting for registration")
 	
 	rospy.wait_for_service('sensors_register')
-	ret = proxy(__platform_name__, RegistrationServiceRequest.CAMERA);
+	ret = proxy(__platform_name__, RegistrationServiceRequest.DIGITAL);
 	__regisered_topic__ = ret.topic
 			
 	output_debug_message("[INFO] : Registered for topic - " + ret.topic)
@@ -65,16 +45,17 @@ def main():
 	global __platform_name__
 	global __camera__
 	
-	rospy.init_node('pi_camera')	
+	rospy.init_node('digital_tester')	
 	
 	__camera__ = PiCamera()
 	
-	__platform_name__ = rospy.get_param("node/platform_name", "CameraStation")
+	__platform_name__ = rospy.get_param("node/platform_name", "DigitalTesterStation")
 	register()
 	
 	time.sleep(1)
 	
-	send_image_stream()
+	send_random_digital_stream()
 	
 if __name__ == "__main__":
 	main()
+
