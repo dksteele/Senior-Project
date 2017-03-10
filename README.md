@@ -1,3 +1,3 @@
 # Senior-Project
 
-Catkin Workspace and Intall Files For Senior Project
+This project is to host my senior project for completing my Bachelors Degree in Computer Engineering at Capitol Technology University. The project consists of designing a command, control, and sensing system for a computer that is acting as a base station for a robot platform. This robot platform for testing will consist of a Raspberry Pi acting as the sensing platform as well as a wireless access point and an Arduino Uno that will be acting as the movement controller. The final result of this project should also be implemented such that additional robots can be added to the system and recieve the same command and control information as the one that is used for testing.
