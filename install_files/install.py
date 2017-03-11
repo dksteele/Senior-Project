@@ -12,6 +12,8 @@ __LOGGING_ARCHIVE_DIR__ = __LOGGING_BASE_DIR__ + "/archive"
 __LOGGING_ACTIVE_DIR__ = __LOGGING_BASE_DIR__ + "/active"
 
 def has_ros_params():
+	global __PROGRAM_DIR__
+	
 	has_params = raw_input("[PROMPT] : Will there be any additional rosparam values that need to be set (y or n)? ").upper() == 'Y'
 	if(not has_params):
 		return False
@@ -76,7 +78,7 @@ def create_setup_file():
 	setup_file.write("#!/bin/bash\n")
 	
 	setup_file.write("rm -r " + __LOGGING_ARCHIVE_DIR__ + "\n")
-	setup_file.write("cp -r " + __LOGGING_ACTIVE_DIR__ + "/* " + __LOGGING_ARCHIVE_DIR__ + "\n")
+	setup_file.write("cp -r " + __LOGGING_ACTIVE_DIR__ + " " +  __LOGGING_ARCHIVE_DIR__ + "\n")
 	
 	setup_file.write("ip route add 224.0.0.0/4 dev " + interface + "\n")
 	if(core):
@@ -97,6 +99,8 @@ def create_setup_file():
 	os.system("chmod 755 " + __PROGRAM_DIR__ + "/start.sh")
 
 def install_packages():
+	global __PROGRAM_DIR__
+	
 	print "[INFO] : Copying necessary instillation files"
 	if os.path.exists(__PROGRAM_DIR__ + "/install"):
 		shutil.rmtree(__PROGRAM_DIR__ + "/install")
@@ -106,6 +110,7 @@ def install_packages():
 	os.system("chmod 755 " + __PROGRAM_DIR__ + "/run.py")
 
 def create_service_file():
+	global __PROGRAM_DIR__
 	
 	print "[INFO] : Creating service"
 	
@@ -124,6 +129,11 @@ def create_service_file():
 	os.system("systemctl start custom_ros.service")
 	
 def install():
+	global __PROGRAM_DIR__
+	global __LOGGING_BASE_DIR__
+	global __LOGGING_ARCHIVE_DIR__
+	global __LOGGING_ARCHIVE_DIR__
+	
 	uninstall()
 	os.makedirs(__PROGRAM_DIR__)
 	os.makedirs(__LOGGING_BASE_DIR__)

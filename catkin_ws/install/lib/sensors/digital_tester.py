@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import rospyNRHP
+import rospy
 from sensors.srv import *
 from std_msgs.msg import Float64
 
@@ -14,7 +14,7 @@ __regisered_topic__ = ""
 def output_debug_message(msg):
 	print datetime.datetime.now(), msg
  
-def send_image_stream():
+def send_random_digital_stream():
 	global __regisered_topic__
 	global __camera__
 	
@@ -22,7 +22,7 @@ def send_image_stream():
 	pub = rospy.Publisher(__regisered_topic__, Float64, queue_size=1)
 	
 	while not rospy.is_shutdown():
-		Float64 number(random.randint(0, 100))
+		number = Float64(random.randint(0, 100))
 		pub.publish(number)
 		
 		time.sleep(1)
@@ -45,9 +45,7 @@ def main():
 	global __platform_name__
 	global __camera__
 	
-	rospy.init_node('digital_tester')	
-	
-	__camera__ = PiCamera()
+	rospy.init_node('digital_tester')
 	
 	__platform_name__ = rospy.get_param("node/platform_name", "DigitalTesterStation")
 	register()

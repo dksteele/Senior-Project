@@ -12,7 +12,7 @@ import threading
 import time
 
 from python_qt_binding import loadUi
-from python_qt_binding.QtCore import QThread
+from python_qt_binding.QtCore import QThread,  QRectF
 from python_qt_binding.QtGui import QPixmap
 from python_qt_binding.QtWidgets import QWidget, QApplication, QTreeWidget, QTreeWidgetItem, QLCDNumber, QGraphicsView, QGraphicsScene
 
@@ -72,7 +72,7 @@ def update_widget_for_sensor(data):
 		return
 	elif __registered_nodes__[selected_node][1] == RegistrationServiceRequest.CAMERA :
 		pixmap = QPixmap()
-		pixmap.load(data.data, data.format.upper())
+		print pixmap.loadFromData(data.data, data.format.upper())
 		__current_sensor_widget__.scene().clear()
 		__current_sensor_widget__.scene().addPixmap(pixmap)
 		__current_sensor_widget__.scene().setSceneRect(QRectF(pixmap.rect()))	

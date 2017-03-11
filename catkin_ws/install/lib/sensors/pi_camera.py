@@ -33,19 +33,16 @@ def send_image_stream():
 		data = BytesIO()
 		__camera__.capture(data, 'jpeg', True)
 		data.truncate()
-		
+			
 		img_num = img_num + 1
 		
-		header = Header()
-		header.seq = img_num
-		header.stamp = rospy.Time.now()
-		
 		msg = CompressedImage()
+		msg.header.seq = img_num
+                msg.header.stamp = rospy.Time.now()
 		msg.format = "jpeg"
 		msg.data = data.getvalue()
-		
-		pub.publish(data)
-		time.sleep(.01)
+			
+		pub.publish(msg)
 	
 def register():
 	global __platform_name__

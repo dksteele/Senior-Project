@@ -106,26 +106,20 @@ void* multicasting_socket(void* argv){
 		sprintf(buff, "[ INFO ] : A New Message Will Be Sent %d Times A Second If Available", args->FREQUENCY);
 	output_debug_message(buff);
 	
-	while(1){
-		// If Interupt Has Occured Exit Thread
-		if(args->stop)
-			pthread_exit(0);
-		
+	while(!args->stop){
 		//Check For New Message And Send If Available Then Wait Till Next Check Is Needed
 		
+		pthread_mutex_lock(&(args->modifying_msg));
 		if(args->new_msg){
-			pthread_mutex_lock(&(args->modifying_msg));
-
 			if(sendto(args->s, args->data, args->data_size, 0, (struct sockaddr *) &addr, sizeof(addr)) < 0)
 				output_debug_message("[ ERROR ] : Failed To Send Message");
 			else
-				args->new_msg = false;
-			
-			pthread_mutex_unlock(&(args->modifying_msg));
-			
-			if(args->FREQUENCY != 0)
-				usleep(1000000 / args->FREQUENCY);
+				args->new_msg = false;			
 		}
+		pthread_mutex_unlock(&(args->modifying_msg));
+		
+		if(args->FREQUENCY != 0)
+			usleep(1000000 / args->FREQUENCY);
 	}
 }
 
