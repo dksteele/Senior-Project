@@ -27,7 +27,7 @@ def has_ros_params():
 
 	param_file.close()
 	return True
-	
+		
 def uninstall():
 	global __PROGRAM_DIR__
 	global __LOGGING_BASE_DIR__
@@ -80,17 +80,19 @@ def create_setup_file():
 	setup_file.write("rm -r " + __LOGGING_ARCHIVE_DIR__ + "\n")
 	setup_file.write("cp -r " + __LOGGING_ACTIVE_DIR__ + " " +  __LOGGING_ARCHIVE_DIR__ + "\n")
 	
-	setup_file.write("ip route add 224.0.0.0/4 dev " + interface + "\n")
 	if(core):
 		setup_file.write("ifconfig " + interface + " down\n")
 		setup_file.write("ifconfig " + interface + " " + core_ip + "\n")
 		setup_file.write("ifconfig " + interface + " up\n")
 		setup_file.write("ip_address=" + core_ip + "\n")
 	else:
-		setup_file.write("ip_address=$(ifconfig | grep " + interface + " -1 | cut -d: -f2 | cut -d' ' -f1)\n")
-		setup_file.write("export ROS_MASTER_URI=http://" + core_ip + "::11311/\n")	
+		setup_file.write("ip_address=$(ifconfig | grep " + interface + " -1 | tail -n 1 | cut -d: -f2 | cut -d' ' -f1)\n")
+		setup_file.write("export ROS_MASTER_URI=http://" + core_ip + ":11311/\n")
 	setup_file.write("export ROS_HOSTNAME=$ip_address\n")
 	setup_file.write("export ROS_IP=$ip_address\n")
+	setup_file.write("env | grep ROS");
+	
+	setup_file.write("ip route add 224.0.0.0/4 dev " + interface + "\n")
 	
 	setup_file.write(command + "\n")
 	
@@ -116,7 +118,9 @@ def create_service_file():
 	
 	service_file = open("/etc/systemd/system/custom_ros.service", 'w')
 	
+	service_file.write("[Unit]\n")
 	service_file.write("Description=Service to start Senior Project at boot\n")
+	service_file.write("After=networking.service\n")
 	service_file.write("[Service]\n")
 	service_file.write("ExecStart=" + __PROGRAM_DIR__ + "/start.sh\n")
 	service_file.write("[Install]\n")

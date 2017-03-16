@@ -14,7 +14,7 @@ __source__command__ = ""
 
 def end_program(signal, frame):
 	global __proc_list__
-	print "STOPING PROCESSES"
+	
 	for proc in __proc_list__:
 		proc.terminate()
 		
@@ -22,10 +22,12 @@ def end_program(signal, frame):
 	
 def setup_params():
 	global __args__
+	
 	param_file = open(__args__.params_file, 'r')
 	for param_pair in param_file:
 		os.system(". /opt/ros/kinetic/setup.sh\nrosparam set " + param_pair.split(":")[0] + " " + param_pair.split(":")[1] + "\n")
 	param_file.close()
+	
 	os.system(". /opt/ros/kinetic/setup.sh\nrosparam dump " + __args__.logging_dir + "/rosparams.log")
 	
 def start_core():
@@ -42,13 +44,13 @@ def run_components():
 	global __proc_list__
 	
 	if(__args__.arduino_control):
-		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun arduino_control arduino_control", stdout=open(__args__.logging_dir + "/arduino_control.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun arduino_control arduino_control", stdout=open(__args__.logging_dir + "/arduino_control.log", 'w'), stderr=subprocess.STDOUT, shell=True))
 		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun joy joy_node", stdout=open(__args__.logging_dir + "/joy.log", 'w'), shell=True))
-		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun bridge multicast_topic_bridge", stdout=open(__args__.logging_dir + "/multicast_bridge.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun bridge multicast_topic_bridge", stdout=open(__args__.logging_dir + "/multicast_bridge.log", 'w'), stderr=subprocess.STDOUT, shell=True))
 	if(__args__.sensing_manager):
-		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun sensors sensing_manager.py", stdout=open(__args__.logging_dir + "/sensing_manager.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun sensors sensing_manager.py", stdout=open(__args__.logging_dir + "/sensing_manager.log", 'w'), stderr=subprocess.STDOUT, shell=True))
 	if(__args__.pi_camera):
-		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun sensors pi_camera.py", stdout=open(__args__.logging_dir + "/pi_camera.log", 'w'), shell=True))
+		__proc_list__.append(subprocess.Popen(__source__command__ +  __args__.install_dir + "/env.sh rosrun sensors pi_camera.py", stdout=open(__args__.logging_dir + "/pi_camera.log", 'w'), stderr=subprocess.STDOUT, shell=True))
 	
 def main():
 	global __args__

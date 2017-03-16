@@ -3,8 +3,6 @@
 
 arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o: /home/daniel/Documents/Senior-Project/catkin_ws/devel/include/arduino_control/ArduinoControl.h
 arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o: /home/daniel/Documents/Senior-Project/catkin_ws/src/arduino_control/src/arduino_control.cpp
-arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o: /opt/ros/kinetic/include/XmlRpcDecl.h
-arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o: /opt/ros/kinetic/include/XmlRpcValue.h
 arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o: /opt/ros/kinetic/include/ros/advertise_options.h
 arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o: /opt/ros/kinetic/include/ros/advertise_service_options.h
 arduino_control/CMakeFiles/arduino_control.dir/src/arduino_control.cpp.o: /opt/ros/kinetic/include/ros/assert.h

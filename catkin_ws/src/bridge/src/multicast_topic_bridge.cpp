@@ -36,13 +36,9 @@ pthread_t multicasting_thread;
 
 shared_program_data data;
 
-/*
- * Prints out [Time]	:	[Message s]
-*/
 void output_debug_message(std::string s){
 	boost::posix_time::ptime time = boost::posix_time::second_clock::local_time();
 	printf("%s\t: %s\n", boost::posix_time::to_simple_string(time).c_str(), s.c_str());
-	ROS_DEBUG("%s\t: %s", boost::posix_time::to_simple_string(time).c_str(), s.c_str());
 }
 
 /*
@@ -152,7 +148,7 @@ int main(int argc, char* argv[])
 	std::string topic_name;	
 	nh.param<std::string>("multicast_topic_bridge/topic", topic_name, "multicast_topic");
 	nh.param<std::string>("multicast_topic_bridge/multicating_group_addr", data.MULTICAST_GROUP_ADDRESS, "224.0.1.1");
-	nh.param<int>("multicast_topic_bridge/sending_port", data.SENDING_PORT, 1234);
+	nh.param<int>("multicast_topic_bridge/sending_port", data.SENDING_PORT, 12345);
 	nh.param<int>("multicast_topic_bridge/frequency", data.FREQUENCY, 1);
 	
 	//Subscribe to parameter for topic_name

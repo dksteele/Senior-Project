@@ -4,7 +4,6 @@
 #include <SPI.h>
 #include <utility/w5100.h>
 
-
 //Enable flags
 #define STOP_ON_STALE_STATUS false
 #define DEBUG true
@@ -16,12 +15,12 @@
 #define LPWM 3
 
 // Needs to be only device with a MAC of this value per network
-byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0xFF};
+byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02};
 
 //Multicasting IP, Port, and MAC are dependent upon the Multicast Group you are connecting to 
 byte multicast_ip[] = {224,0,1,1};
 byte multicast_mac[] = {0x01, 0x00, 0x5E, 0x00, 0x01, 0x01};
-byte multicast_port = 1234;
+int multicast_port = 1234;
 int s = 0;
 
 arduino_control::ArduinoControl ac;
@@ -48,12 +47,26 @@ void setup(){
   //Initialize Ethernet Chipset DHCP
   while(!Ethernet.begin(mac));
 
+#if( DEBUG )
+  Serial.print("IP address: ");
+  Serial.print(Ethernet.localIP()[0], DEC);
+  Serial.print("."); 
+  Serial.print(Ethernet.localIP()[1], DEC);
+  Serial.print("."); 
+  Serial.print(Ethernet.localIP()[2], DEC);
+  Serial.print("."); 
+  Serial.print(Ethernet.localIP()[3], DEC);
+  Serial.println();
+ #endif
+
   //Setup socket s to utilize udp multicasting
   W5100.writeSnDIPR(s, multicast_ip);
   W5100.writeSnDPORT(s, multicast_port);
   W5100.writeSnDHAR(s, multicast_mac);
   W5100.writeSnMR(s, SnMR::UDP | SnMR::MULTI);
+  W5100.writeSnPORT(s, multicast_port);
   W5100.execCmdSn(s, Sock_OPEN);
+  
 }
 
 void loop(){
@@ -81,14 +94,21 @@ void loop(){
     double lspeed = 255, rspeed = 255;
     
     //Take the direction and speed and turn it into a actuall value which can then be scaled to follow the PWM values 0-255
-    lspeed = (ac.dir > 0 ? lspeed * fabs(cos(ac.dir * PI / 180)): lspeed) * ac.speed;
-    rspeed = (ac.dir > 0 ? rspeed : rspeed * fabs(cos(ac.dir * PI / 180))) * ac.speed;
-
-    int normalization_val = scale(fabs(ceil(lspeed)), fabs(ceil(rspeed)), 255);
+    lspeed = (ac.dir > 0 ? lspeed : lspeed * fabs(cos(ac.dir * PI / 180))) * ac.speed;
+    rspeed = (ac.dir > 0 ? rspeed * fabs(cos(ac.dir * PI / 180)) : rspeed ) * ac.speed;
+    
+    double normalization_val = scale(fabs(ceil(lspeed)), fabs(ceil(rspeed)), 255);
     lspeed = ceil(lspeed) * normalization_val;
     rspeed = ceil(rspeed) * normalization_val;
     
+    //If resversing negate speeds
+    if (fabs(ac.dir) > 90){
+      lspeed = -lspeed;
+      rspeed = -rspeed;
+    }
+    
 #if( DEBUG )
+
     Serial.print("L : ");
     Serial.print(lspeed);
     Serial.print(" ; R : ");
@@ -103,7 +123,7 @@ void loop(){
 }
 
 //Return scal value to normalize values such that they are all below speedMax
-int scale(int speed1, int speed2, int speedMax){
+double scale(double speed1, double speed2, double speedMax){
   if(speed1 <= speedMax && speed2 <= speedMax)
     return 1;
   
@@ -133,7 +153,7 @@ ISR(TIMER0_COMPA_vect){
   if (millis_since_last_recieve >= 500 ){
   
 #if( DEBUG )
-    Serial.println("RECIEVE STATUS STALE -> STOPING MOTORS");
+    Serial.println("STATUS STALE -> STOPING MOTORS");
 #endif
 
     setSpeed(0, LPWM, LDIR);

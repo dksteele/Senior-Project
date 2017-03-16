@@ -38,7 +38,7 @@ def send_image_stream():
 		
 		msg = CompressedImage()
 		msg.header.seq = img_num
-                msg.header.stamp = rospy.Time.now()
+        msg.header.stamp = rospy.Time.now()
 		msg.format = "jpeg"
 		msg.data = data.getvalue()
 			
