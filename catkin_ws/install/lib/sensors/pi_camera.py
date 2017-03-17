@@ -64,9 +64,17 @@ def main():
 	
 	rospy.init_node('pi_camera')	
 	
-	__camera__ = PiCamera()
+	__camera__ = PiCamera()	
 	
+	camera_vflip = rospy.get_param("pi_camera/vflip", False)
+	camera_hflip = rospy.get_param("pi_camera/hflip", False)
 	__platform_name__ = rospy.get_param("node/platform_name", "CameraStation")
+	
+	if camera_vflip :
+		__camera__.vflip = True
+	if camera_hflip :
+		__camera__.hflip = True
+	
 	register()
 	
 	time.sleep(1)
