@@ -10,7 +10,7 @@ import time
 
 from io import BytesIO
 
-from picamera import PiCamera
+#from picamera import PiCamera
 
 __platform_name__ = ""
 __regisered_topic__ = ""
@@ -38,7 +38,7 @@ def send_image_stream():
 		
 		msg = CompressedImage()
 		msg.header.seq = img_num
-        msg.header.stamp = rospy.Time.now()
+		msg.header.stamp = rospy.Time.now()
 		msg.format = "jpeg"
 		msg.data = data.getvalue()
 			
@@ -62,14 +62,15 @@ def main():
 	global __platform_name__
 	global __camera__
 	
-	rospy.init_node('pi_camera')	
+	rospy.init_node('pi_camera', anonymous=True)	
 	
-	__camera__ = PiCamera()	
+	__camera__ = None	
 	
-	camera_vflip = rospy.get_param("pi_camera/vflip", False)
-	camera_hflip = rospy.get_param("pi_camera/hflip", False)
 	__platform_name__ = rospy.get_param("node/platform_name", "CameraStation")
+	camera_vflip = rospy.get_param(__platform_name__ + "-pi_camera/vflip", False)
+	camera_hflip = rospy.get_param(__platform_name__ + "-pi_camera/hflip", False)
 	
+	print camera_vflip
 	if camera_vflip :
 		__camera__.vflip = True
 	if camera_hflip :

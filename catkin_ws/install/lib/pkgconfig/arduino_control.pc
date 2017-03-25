@@ -1,8 +1,0 @@
-prefix=/home/daniel/Documents/Senior-Project/catkin_ws/install
-
-Name: arduino_control
-Description: Description of arduino_control
-Version: 0.0.0
-Cflags: -I/home/daniel/Documents/Senior-Project/catkin_ws/install/include
-Libs: -L/home/daniel/Documents/Senior-Project/catkin_ws/install/lib 
-Requires: 

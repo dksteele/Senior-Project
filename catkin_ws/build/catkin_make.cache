@@ -1,2 +1,0 @@
-arduino_control:bridge:sensors
--DCATKIN_DEVEL_PREFIX=/home/daniel/Documents/Senior-Project/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/daniel/Documents/Senior-Project/catkin_ws/install -G Unix Makefiles

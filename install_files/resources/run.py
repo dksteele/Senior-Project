@@ -71,7 +71,7 @@ def main():
 			help="Use this to designate ros parameters")
 	parser.add_argument('--logging_dir', nargs="?", dest="logging_dir", action="store", default="/var/log/custom_ros",
 			help="Use this to specify the directory where the logging should be done")
-	parser.add_argument('--install_dir', nargs="?", dest="install_dir", action="store", default="/usr/share/custom_ros/install",
+	parser.add_argument('--install_dir', nargs="?", dest="install_dir", action="store", default="/opt/custom_ros/install",
 			help="Use this to specify the directory where the install folder for any custom ros nodes is located")
 	
 	__args__ = parser.parse_args()

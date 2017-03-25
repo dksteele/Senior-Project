@@ -109,8 +109,10 @@ def create_start_files():
 	service_start_file.close()
 
 	os.system("chmod 755 " + __PROGRAM_DIR__ + "/start_service.sh")
-	os.system("chmod 755 " + __PROGRAM_DIR__ + "/start_gui.sh")
-	os.system("chmod 755 " + os.getenv("HOME") + "/.config/autostart")
+
+	if (sensor_manager):
+		os.system("chmod 755 " + __PROGRAM_DIR__ + "/start_gui.sh")
+		os.system("chmod 755 " + os.getenv("HOME") + "/.config/autostart")
 
 def install_packages():
 	global __PROGRAM_DIR__
@@ -152,7 +154,8 @@ def create_gui_autostart():
 	if(__HAS_GUI_APP__):
 		print "[INFO] : Creating GUI autostart"
 		
-		os.makedirs(os.getenv("HOME") + "/.config/autostart")
+		if( not os.path.exists(os.getenv("HOME") + "/.config/autostart") ):
+			os.makedirs(os.getenv("HOME") + "/.config/autostart")
 		
 		autostart_file = open(os.getenv("HOME") + "/.config/autostart/custom_ros.desktop", 'w')
 		
