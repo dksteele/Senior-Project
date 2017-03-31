@@ -20,7 +20,7 @@ byte mac[] = {0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x02};
 //Multicasting IP, Port, and MAC are dependent upon the Multicast Group you are connecting to 
 byte multicast_ip[] = {224,0,1,1};
 byte multicast_mac[] = {0x01, 0x00, 0x5E, 0x00, 0x01, 0x01};
-int multicast_port = 1234;
+int multicast_port = 12345;
 int s = 0;
 
 arduino_control::ArduinoControl ac;

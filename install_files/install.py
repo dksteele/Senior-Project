@@ -11,20 +11,26 @@ __LOGGING_BASE_DIR__ = "/var/log/custom_ros"
 __LOGGING_ARCHIVE_DIR__ = __LOGGING_BASE_DIR__ + "/archive"
 __LOGGING_ACTIVE_DIR__ = __LOGGING_BASE_DIR__ + "/active"
 __HAS_GUI_APP__ = False
+__DEFAULT_ROS_PARAMS__ = None
 
 def has_ros_params():
 	global __PROGRAM_DIR__
+	global __DEFAULT_ROS_PARAMS__
 	
 	has_params = raw_input("[PROMPT] : Will there be any additional rosparam values that need to be set (y or n)? ").upper() == 'Y'
-	if(not has_params):
+	if(not has_params and __DEFAULT_ROS_PARAMS__ == None):
 		return False
 	
 	param_file = open(__PROGRAM_DIR__ + "/rosparam.config", 'w')
 	
-	param_pair = raw_input("[PROMPT] : Input paramameter as \"parameter : value\" (\"DONE\" when finished) -> ")
-	while(not param_pair.upper() == "DONE"):
-		param_file.write(param_pair + "\n")
+	if(not __DEFAULT_ROS_PARAMS__ == None):
+		param_file.write(__DEFAULT_ROS_PARAMS__);
+		
+	if(has_params):
 		param_pair = raw_input("[PROMPT] : Input paramameter as \"parameter : value\" (\"DONE\" when finished) -> ")
+		while(not param_pair.upper() == "DONE"):
+			param_file.write(param_pair + "\n")
+			param_pair = raw_input("[PROMPT] : Input paramameter as \"parameter : value\" (\"DONE\" when finished) -> ")
 
 	param_file.close()
 	return True
@@ -49,6 +55,7 @@ def create_start_files():
 	global __LOGGING_ACTIVE_DIR__
 	global __LOGGING_ARCHIVE_DIR__
 	global __HAS_GUI_APP__
+	global __DEFAULT_ROS_PARAMS__
 	
 	
 	interface = raw_input("[PROMPT] : What networking interface is being used on this device? ")
@@ -68,6 +75,7 @@ def create_start_files():
 		command = command + "--core "
 	if(arduino_control):
 		command = command + "--arduino_control "
+		__DEFAULT_ROS_PARAMS__ += "multicast_topic_bridge/topic : arduino_control\n"
 	if(pi_camera):
 		command = command + "--pi_camera "
 	if(has_ros_params()):
