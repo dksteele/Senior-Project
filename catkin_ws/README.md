@@ -15,9 +15,10 @@
         * Implemented Sensors :
             * Raspberry Pi Camera
             * Digital Testing Utility
-    * #### ROS Parameters :
+    * #### Enviroment Parameters :
         * All Sensors :
             * node/platform_name : Designation of platform containing sensors
+    * #### ROS Parameters :
         * Pi Camera :
             * [plaform_name]-pi_camera/vflip : Raspery Pi Camera Vertical Flip
             * [plaform_name]-pi_camera/hflip : Raspery Pi Camera Horizontal Flip
