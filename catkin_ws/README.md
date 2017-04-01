@@ -5,9 +5,9 @@
 * ### Arduino Control
     * #### Description :
         * Translates joy messages such as those generated with joy_node to arduino_control messages that can be sent to control the arduino
-        * The outputed message is composed of the direction and angle of magnitude with forward being 0&deg;
+        * The outputted message is composed of the direction and angle of magnitude with forward being 0&deg;
     * #### ROS Parameters :
-        * arduino_control/deadzone : Value of either axis at which to begin sending data. This allows the user to comensate for a non-zero'd axis
+        * arduino_control/deadzone : Value of either axis at which to begin sending data. This allows the user to compensate for a non-zeroed axis
 
 * ### Sensors
     * #### Description :
