@@ -68,6 +68,7 @@ def create_start_files():
 	arduino_control = raw_input("[PROMPT] : Will this instillation be responsable for issuing joystick commands to arduino devices (y or n)? ").upper() == 'Y'
 	sensor_manager = raw_input("[PROMPT] : Will this instillation be running the sensor management node (y or n)? ").upper() == 'Y'
 	pi_camera = raw_input("[PROMPT] : Will this instillation be utilizing a Raspberry Pi Camera (y or n)? ").upper() == 'Y'
+	platform_name = raw_input("[PROMPT] : What is the name of this platform?")
 	
 	command = "python " + __PROGRAM_DIR__ + "/run.py --logging_dir " + __LOGGING_ACTIVE_DIR__ + " "
 	
@@ -111,6 +112,7 @@ def create_start_files():
 	service_start_file.write("export ROS_MASTER_URI=http://" + core_ip + ":11311/\n")
 	service_start_file.write("export ROS_HOSTNAME=$ip_address\n")
 	service_start_file.write("export ROS_IP=$ip_address\n")
+	service_start_file.write("export PLATFORM_NAME=" +  platform + "\n")
 	service_start_file.write("env | grep ROS\n");
 	service_start_file.write("ip route add 224.0.0.0/4 dev " + interface + "\n")
 	service_start_file.write(command + "\n")

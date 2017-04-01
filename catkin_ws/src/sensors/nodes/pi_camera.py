@@ -66,7 +66,7 @@ def main():
 	
 	__camera__ = None	
 	
-	__platform_name__ = rospy.get_param("node/platform_name", "CameraStation")
+	__platform_name__ = os.getenv("PLATFORM_NAME", default="CameraStation")
 	camera_vflip = rospy.get_param(__platform_name__ + "-pi_camera/vflip", False)
 	camera_hflip = rospy.get_param(__platform_name__ + "-pi_camera/hflip", False)
 	

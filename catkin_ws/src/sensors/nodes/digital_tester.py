@@ -47,7 +47,7 @@ def main():
 	
 	rospy.init_node('digital_tester')
 	
-	__platform_name__ = rospy.get_param("node/platform_name", "DigitalTesterStation")
+	__platform_name__ = os.getenv("PLATFORM_NAME", default="DigitalTesterStation")
 	register()
 	
 	time.sleep(1)
