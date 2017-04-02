@@ -11,19 +11,19 @@ __LOGGING_BASE_DIR__ = "/var/log/custom_ros"
 __LOGGING_ARCHIVE_DIR__ = __LOGGING_BASE_DIR__ + "/archive"
 __LOGGING_ACTIVE_DIR__ = __LOGGING_BASE_DIR__ + "/active"
 __HAS_GUI_APP__ = False
-__DEFAULT_ROS_PARAMS__ = None
+__DEFAULT_ROS_PARAMS__ = ""
 
 def has_ros_params():
 	global __PROGRAM_DIR__
 	global __DEFAULT_ROS_PARAMS__
 	
 	has_params = raw_input("[PROMPT] : Will there be any additional rosparam values that need to be set (y or n)? ").upper() == 'Y'
-	if(not has_params and __DEFAULT_ROS_PARAMS__ == None):
+	if(not has_params and __DEFAULT_ROS_PARAMS__ == ""):
 		return False
 	
 	param_file = open(__PROGRAM_DIR__ + "/rosparam.config", 'w')
 	
-	if(not __DEFAULT_ROS_PARAMS__ == None):
+	if(not __DEFAULT_ROS_PARAMS__ == ""):
 		param_file.write(__DEFAULT_ROS_PARAMS__);
 		
 	if(has_params):
@@ -48,7 +48,7 @@ def uninstall():
 	if(os.path.exists(__PROGRAM_DIR__)):
 		shutil.rmtree(__PROGRAM_DIR__)
 	if(os.path.exists(os.getenv("HOME") + "/.config/autostart/custom_ros.desktop")):
-		shutil.remove(os.getenv("HOME") + "/.config/autostart/custom_ros.desktop")
+		os.remove(os.getenv("HOME") + "/.config/autostart/custom_ros.desktop")
 
 def create_start_files():
 	global __PROGRAM_DIR__
@@ -60,15 +60,15 @@ def create_start_files():
 	
 	interface = raw_input("[PROMPT] : What networking interface is being used on this device? ")
 	
-	core_ip = raw_input("[PROMPT] : What is the ip address of the core (default:192.168.0.1)? ")
+	core_ip = raw_input("[PROMPT] : What is the ip address of the core (default:192.168.1.1)? ")
 	if(not core_ip):
-		core_ip = "192.168.0.1"
+		core_ip = "192.168.1.1"
 	
 	core = raw_input("[PROMPT] : Will this instillation be running the roscore (y or n)? ").upper() == 'Y'		
 	arduino_control = raw_input("[PROMPT] : Will this instillation be responsable for issuing joystick commands to arduino devices (y or n)? ").upper() == 'Y'
 	sensor_manager = raw_input("[PROMPT] : Will this instillation be running the sensor management node (y or n)? ").upper() == 'Y'
 	pi_camera = raw_input("[PROMPT] : Will this instillation be utilizing a Raspberry Pi Camera (y or n)? ").upper() == 'Y'
-	platform_name = raw_input("[PROMPT] : What is the name of this platform?")
+	platform_name = raw_input("[PROMPT] : What is the name of this platform? ")
 	
 	command = "python " + __PROGRAM_DIR__ + "/run.py --logging_dir " + __LOGGING_ACTIVE_DIR__ + " "
 	
@@ -112,7 +112,7 @@ def create_start_files():
 	service_start_file.write("export ROS_MASTER_URI=http://" + core_ip + ":11311/\n")
 	service_start_file.write("export ROS_HOSTNAME=$ip_address\n")
 	service_start_file.write("export ROS_IP=$ip_address\n")
-	service_start_file.write("export PLATFORM_NAME=" +  platform + "\n")
+	service_start_file.write("export PLATFORM_NAME=" +  platform_name + "\n")
 	service_start_file.write("env | grep ROS\n");
 	service_start_file.write("ip route add 224.0.0.0/4 dev " + interface + "\n")
 	service_start_file.write(command + "\n")

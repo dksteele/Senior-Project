@@ -6,11 +6,12 @@ from sensor_msgs.msg import CompressedImage
 from std_msgs.msg import Header
 
 import datetime
+import os
 import time
 
 from io import BytesIO
 
-#from picamera import PiCamera
+from picamera import PiCamera
 
 __platform_name__ = ""
 __regisered_topic__ = ""
@@ -24,25 +25,25 @@ def send_image_stream():
 	global __camera__
 	
 	output_debug_message("[INFO] : Creating publisher on topic - " + __regisered_topic__)
-	pub = rospy.Publisher(__regisered_topic__, CompressedImage, queue_size=1)
+	pub = rospy.Publisher(__regisered_topic__, CompressedImage, tcp_nodelay=True)
 	
 	img_num = 0
 	
 	while not rospy.is_shutdown():
-		
-		data = BytesIO()
-		__camera__.capture(data, 'jpeg', True)
-		data.truncate()
+		if(pub.get_num_connections() > 0):
+			data = BytesIO()
+			__camera__.capture(data, 'jpeg', True)
+			data.truncate()
+				
+			img_num = img_num + 1
 			
-		img_num = img_num + 1
-		
-		msg = CompressedImage()
-		msg.header.seq = img_num
-		msg.header.stamp = rospy.Time.now()
-		msg.format = "jpeg"
-		msg.data = data.getvalue()
-			
-		pub.publish(msg)
+			msg = CompressedImage()
+			msg.header.seq = img_num
+			msg.header.stamp = rospy.Time.now()
+			msg.format = "jpeg"
+			msg.data = data.getvalue()
+				
+			pub.publish(msg)
 	
 def register():
 	global __platform_name__
@@ -64,7 +65,7 @@ def main():
 	
 	rospy.init_node('pi_camera', anonymous=True)	
 	
-	__camera__ = None	
+	__camera__ = PiCamera()	
 	
 	__platform_name__ = os.getenv("PLATFORM_NAME", default="CameraStation")
 	camera_vflip = rospy.get_param(__platform_name__ + "-pi_camera/vflip", False)
