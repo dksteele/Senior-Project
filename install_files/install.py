@@ -90,6 +90,7 @@ def create_start_files():
 		gui_start_file.write("export ROS_MASTER_URI=http://" + core_ip + ":11311/\n")
 		gui_start_file.write("export ROS_HOSTNAME=$ip_address\n")
 		gui_start_file.write("export ROS_IP=$ip_address\n")
+		gui_start_file.write("export PLATFORM_NAME=" +  platform_name + "\n")
 		gui_start_file.write("python " + __PROGRAM_DIR__ + "/run.py --logging_dir " + __LOGGING_ACTIVE_DIR__ + " --sensing_manager\n")
 		gui_start_file.close()
 	
@@ -123,6 +124,7 @@ def create_start_files():
 	if (sensor_manager):
 		os.system("chmod 755 " + __PROGRAM_DIR__ + "/start_gui.sh")
 		os.system("chmod 755 " + os.getenv("HOME") + "/.config/autostart")
+		os.system("chmod -R 777 " + __LOGGING_ACTIVE_DIR__)
 
 def install_packages():
 	global __PROGRAM_DIR__
