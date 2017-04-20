@@ -34,22 +34,20 @@ def has_ros_params():
 
 	param_file.close()
 	return True
-		
-def uninstall():
-	global __PROGRAM_DIR__
-	global __LOGGING_BASE_DIR__
-	
-	if(os.path.isfile("/etc/systemd/system/custom_ros.service")):
-		os.system("systemctl stop custom_ros.service")
-		os.system("systemctl disable custom_ros.service")
-		os.remove("/etc/systemd/system/custom_ros.service")
-	if(os.path.exists(__LOGGING_BASE_DIR__)):
-		shutil.rmtree(__LOGGING_BASE_DIR__)
-	if(os.path.exists(__PROGRAM_DIR__)):
-		shutil.rmtree(__PROGRAM_DIR__)
-	if(os.path.exists(os.getenv("HOME") + "/.config/autostart/custom_ros.desktop")):
-		os.remove(os.getenv("HOME") + "/.config/autostart/custom_ros.desktop")
 
+def user_pi_camera(platform):
+	global __DEFAULT_ROS_PARAMS__
+	
+	pi_camera = raw_input("[PROMPT] : Will this instillation be utilizing a Raspberry Pi Camera (y or n)? ").upper() == 'Y'
+	
+	if pi_camera:
+		if raw_input("[PROMT] : Will you be using a classifier (y or n)? ").upper() == 'Y':
+			__DEFAULT_ROS_PARAMS__ += platform + "-pi_camera/classifier : " + raw_input("[PROMPT]  : Where is the classifier stored? ") + "\n"
+			if raw_input("[PROMT] : Does the classifier require a grayscale image (y or n)? ").upper() == 'Y':
+				__DEFAULT_ROS_PARAMS__ += platform + "-pi_camera/classify_gray : True\n"
+	
+	return pi_camera
+	
 def create_start_files():
 	global __PROGRAM_DIR__
 	global __LOGGING_ACTIVE_DIR__
@@ -58,6 +56,7 @@ def create_start_files():
 	global __DEFAULT_ROS_PARAMS__
 	
 	
+	platform_name = raw_input("[PROMPT] : What is the name of this platform? ")
 	interface = raw_input("[PROMPT] : What networking interface is being used on this device? ")
 	
 	core_ip = raw_input("[PROMPT] : What is the ip address of the core (default:192.168.1.1)? ")
@@ -67,8 +66,6 @@ def create_start_files():
 	core = raw_input("[PROMPT] : Will this instillation be running the roscore (y or n)? ").upper() == 'Y'		
 	arduino_control = raw_input("[PROMPT] : Will this instillation be responsable for issuing joystick commands to arduino devices (y or n)? ").upper() == 'Y'
 	sensor_manager = raw_input("[PROMPT] : Will this instillation be running the sensor management node (y or n)? ").upper() == 'Y'
-	pi_camera = raw_input("[PROMPT] : Will this instillation be utilizing a Raspberry Pi Camera (y or n)? ").upper() == 'Y'
-	platform_name = raw_input("[PROMPT] : What is the name of this platform? ")
 	
 	command = "python " + __PROGRAM_DIR__ + "/run.py --logging_dir " + __LOGGING_ACTIVE_DIR__ + " "
 	
@@ -77,7 +74,7 @@ def create_start_files():
 	if(arduino_control):
 		command = command + "--arduino_control "
 		__DEFAULT_ROS_PARAMS__ += "multicast_topic_bridge/topic : arduino_control\n"
-	if(pi_camera):
+	if(use_pi_camera(platform_name)):
 		command = command + "--pi_camera "
 	if(has_ros_params()):
 		command = command + "--rosparams " + __PROGRAM_DIR__ + "/rosparam.config"
@@ -161,8 +158,6 @@ def create_gui_autostart():
 	global __HAS_GUI_APP__
 	global __PROGRAM_DIR__
 	
-	
-	
 	if(__HAS_GUI_APP__):
 		print "[INFO] : Creating GUI autostart"
 		
@@ -200,11 +195,26 @@ def install():
 	create_service_file()
 	create_gui_autostart()
 	
+def uninstall():
+	global __PROGRAM_DIR__
+	global __LOGGING_BASE_DIR__
+	
+	if(os.path.isfile("/etc/systemd/system/custom_ros.service")):
+		os.system("systemctl stop custom_ros.service")
+		os.system("systemctl disable custom_ros.service")
+		os.remove("/etc/systemd/system/custom_ros.service")
+	if(os.path.exists(__LOGGING_BASE_DIR__)):
+		shutil.rmtree(__LOGGING_BASE_DIR__)
+	if(os.path.exists(__PROGRAM_DIR__)):
+		shutil.rmtree(__PROGRAM_DIR__)
+	if(os.path.exists(os.getenv("HOME") + "/.config/autostart/custom_ros.desktop")):
+		os.remove(os.getenv("HOME") + "/.config/autostart/custom_ros.desktop")
+
 def main():
 	global __args__
 	
 	if(not os.getuid() == 0):
-		print "[ERROR] : To install this must be executed as the root user"
+		print "[ERROR] : To utilize this utility is must be executed as the root user (ex. sudo python install.py <arguments>)"
 	else:
 		parser = argparse.ArgumentParser(description='Senior Project Instillation')
 		parser.add_argument('-u', '--uninstall', dest='uninstall', action="store_true", default=False,

@@ -38,12 +38,16 @@ void setup(){
 	setup_timer_registers();
 #endif
 
+
   //Setup Outputs For Motor Control
   pinMode(LDIR, OUTPUT);
   pinMode(LPWM, OUTPUT);
   pinMode(RDIR, OUTPUT);
   pinMode(RPWM, OUTPUT);
 
+  pinMode(4,OUTPUT);
+  digitalWrite(4,HIGH); // default to on
+  
   //Initialize Ethernet Chipset DHCP
   while(!Ethernet.begin(mac));
 
@@ -66,10 +70,10 @@ void setup(){
   W5100.writeSnMR(s, SnMR::UDP | SnMR::MULTI);
   W5100.writeSnPORT(s, multicast_port);
   W5100.execCmdSn(s, Sock_OPEN);
-  
 }
 
 void loop(){
+  
   //If data has been recieved begin processing, otherwise loop back and check again
   if(W5100.getRXReceivedSize(s) > 0){
     
@@ -115,7 +119,7 @@ void loop(){
     Serial.print(rspeed);
     Serial.println(" ;");
 #endif
-    
+
     setSpeed(lspeed, LPWM, LDIR);
     setSpeed(rspeed, RPWM, RDIR);
      
@@ -136,7 +140,6 @@ void setSpeed(int speed, int pwm_port, int dir_port){
     digitalWrite(dir_port, HIGH);
   else
     digitalWrite(dir_port, LOW);
-  
   analogWrite(pwm_port, abs(speed));
 }
 
