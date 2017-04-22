@@ -41,7 +41,6 @@ def send_image_stream():
 			data = BytesIO()
 			__camera__.capture(data, 'jpeg', True)
 			
-						
 			msg = CompressedImage()
 			msg.header.seq = img_num
 			msg.header.stamp = rospy.Time.now()
@@ -55,7 +54,7 @@ def send_image_stream():
 				if __classify_gray__:
 					classifier_img = cv2.cvtColor(img, cv2.COLOR_BGR2GAY)
 				
-				detects = classifier.detectMultiScale(gray)
+				detects = classifier.detectMultiScale(classifier_img)
 				
 				for (x,y,w,h) in detects:
 					cv2.rectangle(img, (x,y), (x+w, y+h), (255, 255, 0), 2)
