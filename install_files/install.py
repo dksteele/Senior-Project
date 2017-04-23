@@ -13,6 +13,8 @@ __LOGGING_ACTIVE_DIR__ = __LOGGING_BASE_DIR__ + "/active"
 __HAS_GUI_APP__ = False
 __DEFAULT_ROS_PARAMS__ = ""
 
+# Prompts the user for any rosparam values that should be set at startup and  that corispond to the platform being setup.
+# Returns a boolean value reperesenting if any ros params are provided
 def has_ros_params():
 	global __PROGRAM_DIR__
 	global __DEFAULT_ROS_PARAMS__
@@ -35,6 +37,9 @@ def has_ros_params():
 	param_file.close()
 	return True
 
+# Prompts the user to determine if they are using the raspberry pi camera or not
+# If used it will prompt for if a classifier should be used
+# Returns a boolean value representing wheather or not the pi camera is used
 def user_pi_camera(platform):
 	global __DEFAULT_ROS_PARAMS__
 	
@@ -55,7 +60,7 @@ def create_start_files():
 	global __HAS_GUI_APP__
 	global __DEFAULT_ROS_PARAMS__
 	
-	
+	#Prompt the user for configuration
 	platform_name = raw_input("[PROMPT] : What is the name of this platform? ")
 	interface = raw_input("[PROMPT] : What networking interface is being used on this device? ")
 	
@@ -79,6 +84,7 @@ def create_start_files():
 	if(has_ros_params()):
 		command = command + "--rosparams " + __PROGRAM_DIR__ + "/rosparam.config"
 	
+	#Write the scripts for running at startup and for gui start
 	if(sensor_manager):
 		__HAS_GUI_APP__ = True
 		gui_start_file = open(__PROGRAM_DIR__ + "/start_gui.sh", 'w')
@@ -123,6 +129,7 @@ def create_start_files():
 		os.system("chmod 755 " + os.getenv("HOME") + "/.config/autostart")
 		os.system("chmod -R 777 " + __LOGGING_ACTIVE_DIR__)
 
+# Copies required package files for installign components
 def install_packages():
 	global __PROGRAM_DIR__
 	
@@ -134,6 +141,8 @@ def install_packages():
 		
 	os.system("chmod 755 " + __PROGRAM_DIR__ + "/run.py")
 
+	
+# Creates the startup service definition file
 def create_service_file():
 	global __PROGRAM_DIR__
 	
@@ -153,7 +162,7 @@ def create_service_file():
 	os.system("systemctl enable custom_ros.service")
 	os.system("systemctl start custom_ros.service")
 
-
+# Creates the GUI autostart file
 def create_gui_autostart():
 	global __HAS_GUI_APP__
 	global __PROGRAM_DIR__

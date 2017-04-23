@@ -19,7 +19,8 @@ def end_program(signal, frame):
 		proc.terminate()
 		
 	sys.exit(0)
-	
+
+#	Sets up the default ROS parameters
 def setup_params():
 	global __args__
 	
@@ -30,6 +31,7 @@ def setup_params():
 	
 	os.system(". /opt/ros/kinetic/setup.sh\nrosparam dump " + __args__.logging_dir + "/rosparams.log")
 	
+#	Starts the ROS Core
 def start_core():
 	global __args__
 	global __source__command__
@@ -37,7 +39,8 @@ def start_core():
 	
 	print "[INFO] : Starting Core"
 	__proc_list__.append(subprocess.Popen(__source__command__ + "roscore", stdout=open(__args__.logging_dir + "/roscore.log", 'w'), shell=True))
-	
+
+# Start components as defined in the configuration
 def run_components():
 	global __args__
 	global __source__command__
@@ -80,6 +83,7 @@ def main():
 	
 	if(__args__.core):
 		start_core()
+		# Wait for rosmaster to start
 		while (not os.system("top -b -n1 | grep rosmaster") == 0):
 			continue
 	if(__args__.params_file):
@@ -87,6 +91,7 @@ def main():
 		
 	run_components()
 	
+	#	Allow programs to run
 	while(True):
 		time.sleep(120)
 		continue
